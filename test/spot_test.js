@@ -5,12 +5,15 @@
 'use strict'
 
 const spot = require('../lib/spot.js')
+const cloud = require('../lib/cloud.js')
 const assert = require('assert')
+const filedel = require('filedel')
 const co = require('co')
+const apemansleep = require('apemansleep')
 
 describe('spot', () => {
   before(() => co(function * () {
-
+    
   }))
 
   after(() => co(function * () {
@@ -18,7 +21,15 @@ describe('spot', () => {
   }))
 
   it('Spot', () => co(function * () {
+    let cloudInstance = yield cloud({
+      storage: `${__dirname}/../tmp/testing-spot`
+    })
+    let spotInstance = yield spot()
+    yield apemansleep.sleep(300)
+    spotInstance.disconnect()
+    cloudInstance.close()
 
+    yield filedel(`${__dirname}/../tmp/testing-spot/**/*`)
   }))
 })
 

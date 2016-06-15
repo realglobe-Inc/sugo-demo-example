@@ -6,7 +6,7 @@
   "scripts": {
     "test": "./ci/test.js",
     "prepublish": "./ci/build.js",
-    "start":"./bin/cloud.js & ./bin/spot.js"
+    "start": "./bin/cloud.js & ./bin/spot.js"
   },
   "repository": "realglobe-Inc/sugo-demo-example",
   "keywords": [
@@ -39,7 +39,9 @@
     "ape-testing": "^4.0.0",
     "ape-tmpl": "^5.0.2",
     "ape-updating": "^3.0.2",
+    "apemansleep": "^1.0.1",
     "coz": "^6.0.2",
+    "filedel": "^2.0.1",
     "injectmock": "^2.0.0"
   },
   "engines": {
