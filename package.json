@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Demo of sugo example",
   "main": "lib",
+  "bin": "./bin/cli.js",
   "scripts": {
     "test": "./ci/test.js",
     "prepublish": "./ci/build.js",
@@ -25,7 +26,10 @@
   "homepage": "https://github.com/realglobe-Inc/sugo-demo-example#readme",
   "dependencies": {
     "co": "^4.6.0",
+    "commander": "^2.9.0",
     "debug": "^2.2.0",
+    "defaults": "^1.0.3",
+    "execcli": "^4.0.5",
     "sugo-cloud": "^1.0.5",
     "sugo-spot": "^1.0.14",
     "sugo-terminal": "^1.0.5"

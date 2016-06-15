@@ -57,7 +57,7 @@ Installation
 -----
 
 ```bash
-$ npm install sugo-demo-example --save
+$ npm install sugo-demo-example -g
 ```
 
 
@@ -67,13 +67,26 @@ $ npm install sugo-demo-example --save
 
 <a name="section-doc-guides-02-usage-md"></a>
 Usage
----------
+-----
 
-```javascript
-'use strict'
+Run example cloud
 
-const sugoDemoExample = require('sugo-demo-example')
+```bash
+$ sugo-demo-example cloud
+```
 
+
+Run example spot
+
+```bash
+$ sugo-demo-example spot
+```
+
+
+Run example terminal
+
+```bash
+$ sugo-demo-example terminal
 ```
 
 

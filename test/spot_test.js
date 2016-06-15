@@ -13,7 +13,7 @@ const apemansleep = require('apemansleep')
 
 describe('spot', () => {
   before(() => co(function * () {
-    
+
   }))
 
   after(() => co(function * () {
@@ -21,15 +21,14 @@ describe('spot', () => {
   }))
 
   it('Spot', () => co(function * () {
+    yield filedel(`${__dirname}/../tmp/testing-spot/**/*.json`)
     let cloudInstance = yield cloud({
       storage: `${__dirname}/../tmp/testing-spot`
     })
     let spotInstance = yield spot()
     yield apemansleep.sleep(300)
-    spotInstance.disconnect()
-    cloudInstance.close()
-
-    yield filedel(`${__dirname}/../tmp/testing-spot/**/*`)
+    yield spotInstance.disconnect()
+    yield cloudInstance.close()
   }))
 })
 
