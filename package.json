@@ -1,0 +1,52 @@
+{
+  "name": "sugo-demo-example",
+  "version": "1.0.0",
+  "description": "Demo of sugo example",
+  "main": "lib",
+  "scripts": {
+    "test": "./ci/test.js",
+    "prepublish": "./ci/build.js",
+    "start":"./bin/cloud.js & ./bin/spot.js"
+  },
+  "repository": "realglobe-Inc/sugo-demo-example",
+  "keywords": [
+    "SUGOS",
+    "example"
+  ],
+  "author": {
+    "name": "Taka Okunishi",
+    "email": "okunishitaka.com@gmail.com",
+    "url": "http://okunishitaka.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/realglobe-Inc/sugo-demo-example/issues"
+  },
+  "homepage": "https://github.com/realglobe-Inc/sugo-demo-example#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "debug": "^2.2.0",
+    "sugo-cloud": "^1.0.5",
+    "sugo-spot": "^1.0.14",
+    "sugo-terminal": "^1.0.5"
+  },
+  "devDependencies": {
+    "ape-covering": "^3.0.3",
+    "ape-formatting": "^1.0.0",
+    "ape-releasing": "^3.1.1",
+    "ape-reporting": "^3.0.1",
+    "ape-tasking": "^4.0.1",
+    "ape-testing": "^4.0.0",
+    "ape-tmpl": "^5.0.2",
+    "ape-updating": "^3.0.2",
+    "coz": "^6.0.2",
+    "injectmock": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "publishConfig": {
+    "registry": "https://realglobe.artifactoryonline.com/realglobe/api/npm/npm-local"
+  }
+}
