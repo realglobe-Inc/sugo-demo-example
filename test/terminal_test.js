@@ -10,18 +10,21 @@ const cloud = require('../lib/cloud.js')
 const assert = require('assert')
 const filedel = require('filedel')
 const co = require('co')
+const injectmock = require('injectmock')
+const apemanport = require('apemanport')
 const apemansleep = require('apemansleep')
 
 describe('terminal', () => {
-  let { STORAGE } = process.env
   before(() => co(function * () {
+    let port = yield apemanport.find()
     let storage = `${__dirname}/../tmp/testing-terminal/**/*.json`
     yield filedel(storage)
-    process.env.STORAGE = storage
+    injectmock(process.env, 'STORAGE', storage)
+    injectmock(process.env, 'PORT', port)
   }))
 
   after(() => co(function * () {
-    process.env.STORAGE = STORAGE
+    injectmock.restoreAll()
   }))
 
   it('Terminal', () => co(function * () {
