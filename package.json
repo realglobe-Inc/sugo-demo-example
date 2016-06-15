@@ -25,16 +25,20 @@
   },
   "homepage": "https://github.com/realglobe-Inc/sugo-demo-example#readme",
   "dependencies": {
+    "apeman-brws-react": "^2.0.1",
     "co": "^4.6.0",
     "commander": "^2.9.0",
     "debug": "^2.2.0",
     "defaults": "^1.0.3",
     "execcli": "^4.0.5",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
     "sugo-cloud": "^1.0.5",
     "sugo-spot": "^1.0.14",
     "sugo-terminal": "^1.0.5"
   },
   "devDependencies": {
+    "ape-compiling": "^4.1.2",
     "ape-covering": "^3.0.3",
     "ape-formatting": "^1.0.0",
     "ape-releasing": "^3.1.1",
@@ -43,8 +47,10 @@
     "ape-testing": "^4.0.0",
     "ape-tmpl": "^5.0.2",
     "ape-updating": "^3.0.2",
+    "apeman-asset-javascripts": "^3.0.20",
     "apemansleep": "^1.0.1",
     "coz": "^6.0.2",
+    "filecopy": "^2.0.0",
     "filedel": "^2.0.1",
     "injectmock": "^2.0.0"
   },
