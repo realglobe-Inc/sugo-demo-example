@@ -6,5 +6,5 @@
 const spot = require('../lib/spot')
 
 spot()
-  .then(() => console.debug('Spot started'))
+  .then(() => console.log('Spot started'))
   .catch((err) => console.error('Spot error', err))

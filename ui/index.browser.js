@@ -54,20 +54,24 @@ var IndexComponent = _react2.default.createClass({
         _react2.default.createElement(
           _apemanReactBasic.ApContainer,
           null,
-          _react2.default.createElement(_apemanReactEditor.ApEditor, { value: state.script,
-            onChange: function onChange(e) {
-              return s.setState({ script: e.value });
-            }
-          })
-        )
-      ),
-      _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _apemanReactBasic.ApButton,
-          null,
-          'Run'
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(_apemanReactEditor.ApEditor, { value: state.script,
+              onChange: function onChange(e) {
+                return s.setState({ script: e.value });
+              }
+            })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              _apemanReactBasic.ApButton,
+              null,
+              'Run'
+            )
+          )
         )
       )
     );

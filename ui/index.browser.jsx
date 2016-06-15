@@ -46,14 +46,17 @@ const IndexComponent = React.createClass({
         <ApEditorStyle highlightColor={ color }/>
         <ApPage>
           <ApContainer>
-            <ApEditor value={ state.script }
-                      onChange={ (e) => s.setState({script: e.value}) }
-            />
+            <div>
+              <ApEditor value={ state.script }
+                        onChange={ (e) => s.setState({script: e.value}) }
+              />
+            </div>
+            <div>
+              <ApButton primary>Run</ApButton>
+            </div>
           </ApContainer>
         </ApPage>
-        <div>
-          <ApButton>Run</ApButton>
-        </div>
+
       </div>
     )
   },

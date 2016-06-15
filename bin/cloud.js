@@ -6,5 +6,5 @@
 const cloud = require('../lib/cloud')
 
 cloud()
-  .then(() => console.debug('Cloud started'))
+  .then(() => console.log('Cloud started'))
   .catch((err) => console.error('Cloud error', err))
