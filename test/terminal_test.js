@@ -8,7 +8,6 @@ const terminal = require('../lib/terminal.js')
 const spot = require('../lib/spot.js')
 const cloud = require('../lib/cloud.js')
 const assert = require('assert')
-const filedel = require('filedel')
 const co = require('co')
 const injectmock = require('injectmock')
 const apemanport = require('apemanport')
@@ -17,8 +16,7 @@ const apemansleep = require('apemansleep')
 describe('terminal', () => {
   before(() => co(function * () {
     let port = yield apemanport.find()
-    let storage = `${__dirname}/../tmp/testing-terminal/**/*.json`
-    yield filedel(storage)
+    let storage = `${__dirname}/../tmp/testing-terminal`
     injectmock(process.env, 'STORAGE', storage)
     injectmock(process.env, 'PORT', port)
   }))

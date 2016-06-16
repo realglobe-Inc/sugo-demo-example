@@ -16,8 +16,7 @@ const apemansleep = require('apemansleep')
 describe('spot', () => {
   before(() => co(function * () {
     let port = yield apemanport.find()
-    let storage = `${__dirname}/../tmp/testing-spot/**/*.json`
-    yield filedel(storage)
+    let storage = `${__dirname}/../tmp/testing-spot`
     injectmock(process.env, 'STORAGE', storage)
     injectmock(process.env, 'PORT', port)
   }))
@@ -29,7 +28,7 @@ describe('spot', () => {
   it('Spot', () => co(function * () {
     let cloudInstance = yield cloud()
     let spotInstance = yield spot()
-    yield apemansleep.sleep(3000)
+    yield apemansleep.sleep(300)
     yield spotInstance.disconnect()
     yield cloudInstance.close()
   }))

@@ -114,26 +114,33 @@ var IndexComponent = _react2.default.createClass({
 
 
     (0, _co2.default)(regeneratorRuntime.mark(function _callee() {
-      var _ref, body;
+      var script, _ref, body, attributes;
 
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               s.setState({ busy: true });
-              _context.next = 3;
+              script = state.script;
+              _context.next = 4;
               return _apemanBrwsRequest2.default.post('/actions/compile', {
-                data: state.script
+                data: {
+                  type: 'javascript',
+                  attributes: {
+                    script: script
+                  }
+                }
               });
 
-            case 3:
+            case 4:
               _ref = _context.sent;
               body = _ref.body;
+              attributes = body.data.attributes;
 
-              console.log('compiled script:', body.data);
+              console.log('compiled script:', attributes.script);
               s.setState({ busy: false });
 
-            case 7:
+            case 9:
             case 'end':
               return _context.stop();
           }

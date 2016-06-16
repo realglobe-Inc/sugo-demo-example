@@ -13,7 +13,7 @@ require("babel-polyfill")
 
 import configs from '../lib/configs'
 
-let {color, port, hostname} = configs()
+let { color, port, hostname } = configs()
 
 const DEFAULT_SCRIPT = `
 let url = 'http://${hostname}:${port}/terminals'
@@ -86,10 +86,17 @@ const IndexComponent = React.createClass({
 
     co(function * () {
       s.setState({ busy: true })
-      let {body} = yield apRequest.post('/actions/compile', {
-        data: state.script
+      let { script } = state
+      let { body } = yield apRequest.post('/actions/compile', {
+        data: {
+          type: 'javascript',
+          attributes: {
+            script
+          }
+        }
       })
-      console.log('compiled script:', body.data)
+      let { attributes } = body.data
+      console.log('compiled script:', attributes.script)
       s.setState({ busy: false })
     }).catch((err) => {
       console.error('error', err)

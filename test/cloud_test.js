@@ -38,13 +38,18 @@ describe('cloud', () => {
         method: 'POST',
         json: true,
         body: {
-          data: `
+          data: {
+            type: 'javascript',
+            attributes: {
+              script: `
 let hoge = () => 'This is hoge'
 `
+            }
+          }
         }
       })
       assert.equal(statusCode, 200)
-      assert.ok(body)
+      assert.ok(body.data)
     }
     instance.close()
   }))
