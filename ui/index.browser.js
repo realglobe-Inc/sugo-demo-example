@@ -8,27 +8,25 @@ var _apemanBrwsReact = require('apeman-brws-react');
 
 var _apemanBrwsReact2 = _interopRequireDefault(_apemanBrwsReact);
 
+var _agent = require('sugo-endpoint-compile/lib/agent');
+
+var _agent2 = _interopRequireDefault(_agent);
+
 var _apemanReactBasic = require('apeman-react-basic');
 
-var _apemanReactTheme = require('apeman-react-theme');
-
-var _apemanReactEditor = require('apeman-react-editor');
+var _sugoReactExample = require('sugo-react-example');
 
 var _co = require('co');
 
 var _co2 = _interopRequireDefault(_co);
 
-var _classnames = require('classnames');
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
 var _sugoTerminal = require('sugo-terminal');
 
 var _sugoTerminal2 = _interopRequireDefault(_sugoTerminal);
 
-var _apemanBrwsRequest = require('apeman-brws-request');
+var _package = require('../package.json');
 
-var _apemanBrwsRequest2 = _interopRequireDefault(_apemanBrwsRequest);
+var _package2 = _interopRequireDefault(_package);
 
 var _configs2 = require('../lib/configs');
 
@@ -36,7 +34,7 @@ var _configs3 = _interopRequireDefault(_configs2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-require("babel-polyfill");
+require('babel-polyfill');
 
 var _configs = (0, _configs3.default)();
 
@@ -45,7 +43,7 @@ var port = _configs.port;
 var hostname = _configs.hostname;
 
 
-var DEFAULT_SCRIPT = '\nlet url = \'http://' + hostname + ':' + port + '/terminals\'\nco(function * () {\n  let terminal = sugoTerminal(url)\n  let spot01 = yield terminal.connect(\'spot01\')\n  \n  // Take ping-pong with noop interface.\n  {\n    let noop = spot01.noop()\n    console.log(\'Send ping to noop...\')\n    let pong = yield noop.ping()\n    console.log(' + '`...received ping from noop: "${pong}"`' + ')\n  }\n}).catch((err) => console.error(err))\n';
+var DEFAULT_SCRIPT = '\nlet url = \'http://' + hostname + ':' + port + '/terminals\'\nco(function * () {\n  let terminal = sugoTerminal(url)\n  let spot01 = yield terminal.connect(\'spot01\')\n\n  // Take ping-pong with noop interface.\n  {\n    let noop = spot01.noop()\n    console.log(\'Send ping to noop...\')\n    let pong = yield noop.ping()\n    console.log(' + '`...received ping from noop: "${pong}"`' + ')\n  }\n}).catch((err) => console.error(err))\n';
 var globals = {
   co: _co2.default,
   sugoTerminal: _sugoTerminal2.default
@@ -56,49 +54,85 @@ var IndexComponent = _react2.default.createClass({
   getInitialState: function getInitialState() {
     return {
       script: DEFAULT_SCRIPT,
-      busy: false
+      scriptBusy: false,
+      scriptError: null,
+      tab: 'SCRIPT'
     };
   },
   render: function render() {
     var s = this;
     var state = s.state;
     var script = state.script;
+    var tab = state.tab;
 
     return _react2.default.createElement(
       'div',
       null,
-      _react2.default.createElement(_apemanReactTheme.ApThemeStyle, { dominant: color }),
-      _react2.default.createElement(_apemanReactEditor.ApEditorStyle, { highlightColor: color }),
+      _react2.default.createElement(_sugoReactExample.SgExampleStyle, { dominant: color }),
       _react2.default.createElement(
-        _apemanReactBasic.ApPage,
+        _sugoReactExample.SgExample,
         null,
+        _react2.default.createElement(_sugoReactExample.SgExampleHeader, { pkg: _package2.default }),
         _react2.default.createElement(
-          _apemanReactBasic.ApContainer,
+          _apemanReactBasic.ApMain,
           null,
           _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(_apemanReactEditor.ApEditor, { className: (0, _classnames2.default)('editor', {
-                'editor-busy': state.busy
-              }),
-              value: script,
-              onChange: function onChange(e) {
-                return s.setState({ script: e.value });
-              }
-            })
-          ),
-          _react2.default.createElement(
-            'div',
+            _apemanReactBasic.ApSection,
             null,
             _react2.default.createElement(
-              _apemanReactBasic.ApButton,
-              { primary: true,
-                disabled: state.busy,
-                onTap: s.runScript },
-              'Run Script'
+              _apemanReactBasic.ApSectionHeader,
+              { lined: true },
+              'Sandbox'
+            ),
+            _react2.default.createElement(
+              _apemanReactBasic.ApSectionBody,
+              null,
+              _react2.default.createElement(
+                _apemanReactBasic.ApTabGroup,
+                null,
+                _react2.default.createElement(
+                  _apemanReactBasic.ApTab,
+                  null,
+                  _react2.default.createElement(
+                    _apemanReactBasic.ApTabItem,
+                    { selected: tab === 'SCRIPT' },
+                    'Script'
+                  ),
+                  _react2.default.createElement(
+                    _apemanReactBasic.ApTabItem,
+                    { selected: tab === 'GUI' },
+                    'GUI'
+                  )
+                ),
+                _react2.default.createElement(
+                  _apemanReactBasic.ApTabContent,
+                  { selected: tab === 'SCRIPT' },
+                  _react2.default.createElement(_sugoReactExample.SgExampleScript, { script: script,
+                    spinning: state.scriptBusy,
+                    onChange: function onChange(e) {
+                      return s.setState({ script: e.value });
+                    },
+                    onRun: function onRun() {
+                      return s.runScript();
+                    },
+                    error: state.scriptError
+                  })
+                )
+              )
             )
+          ),
+          _react2.default.createElement(
+            _apemanReactBasic.ApSection,
+            null,
+            _react2.default.createElement(
+              _apemanReactBasic.ApSectionHeader,
+              { lined: true },
+              'Console'
+            ),
+            _react2.default.createElement(_apemanReactBasic.ApSectionBody, null)
           )
-        )
+        ),
+        _react2.default.createElement(_apemanReactBasic.ApFooter, null)
       )
     );
   },
@@ -114,41 +148,29 @@ var IndexComponent = _react2.default.createClass({
 
 
     (0, _co2.default)(regeneratorRuntime.mark(function _callee() {
-      var script, _ref, body, attributes;
-
+      var compiled;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              s.setState({ busy: true });
-              script = state.script;
-              _context.next = 4;
-              return _apemanBrwsRequest2.default.post('/actions/compile', {
-                data: {
-                  type: 'javascript',
-                  attributes: {
-                    script: script
-                  }
-                }
-              });
+              s.setState({ scriptBusy: true });
+              _context.next = 3;
+              return (0, _agent2.default)('/actions/compile').compile(state.script);
 
-            case 4:
-              _ref = _context.sent;
-              body = _ref.body;
-              attributes = body.data.attributes;
+            case 3:
+              compiled = _context.sent;
 
-              console.log('compiled script:', attributes.script);
-              s.setState({ busy: false });
+              console.log('compiled script:', compiled);
+              s.setState({ scriptBusy: false });
 
-            case 9:
+            case 6:
             case 'end':
               return _context.stop();
           }
         }
       }, _callee, this);
-    })).catch(function (err) {
-      console.error('error', err);
-      s.setState({ busy: false });
+    })).catch(function (scriptError) {
+      s.setState({ scriptError: scriptError, scriptBusy: false });
     });
   }
 });
@@ -157,10 +179,14 @@ var IndexComponent = _react2.default.createClass({
 {
   (function () {
     var CONTAINER_ID = 'index-wrap';
-    window.onload = function () {
+
+    var onLoad = function onLoad() {
+      window.removeEventListener('DOMContentLoaded', onLoad);
       _apemanBrwsReact2.default.render(CONTAINER_ID, IndexComponent, {}, function done() {
         // The component is ready.
       });
     };
+
+    window.addEventListener('DOMContentLoaded', onLoad);
   })();
 }
