@@ -7,21 +7,23 @@
 require('babel-polyfill')
 
 import React, {PropTypes as types} from 'react'
-import apReact from 'apeman-brws-react'
+import ReactDOM from 'react-dom'
 import Component from './component'
 import configs from '../../../lib/configs'
 import pkg from '../../../package.json'
 
 let { color, port, hostname } = configs()
 
-const CONTAINER_ID = 'mount-root'
-
 function onLoad () {
   window.removeEventListener('DOMContentLoaded', onLoad)
-  apReact.render(CONTAINER_ID, Component, {
+
+  let container = document.getElementById('mount-root')
+  let element = React.createElement(Component, {
     pkg, color, port, hostname
-  }, () => {
-    console.debug('')
+  })
+
+  ReactDOM.render(element, container, () => {
+    console.debug('Component mounted')
   })
 }
 

@@ -4,6 +4,8 @@
  */
 'use strict'
 
+const CONTAINER_ID = 'dynamic-mount-root'
+
 /** @lends Snippets */
 module.exports = Object.assign(exports, {
   /**
@@ -11,8 +13,36 @@ module.exports = Object.assign(exports, {
    * @type {string}
    */
   DEFAULT_SCRIPT: `
+import React, {PropTypes as types} from 'react'
+import ReactDOM from 'react-dom'
+
 let { TERMINAL_URL } = window
-console.log('TERMINAL_URL', TERMINAL_URL)
+
+/**
+ * Dynamic component create from the online-editor
+ * @class DynamicComponent
+ */
+const DynamicComponent = React.createClass({
+  render () {
+     return (
+      <div className='dynamic-component'>
+        This is the mounted content!
+      </div>
+     )
+  }
+})
+
+function onLoad () {
+  window.removeEventListener('DOMContentLoaded', onLoad)
+  
+  let container = document.getElementById('${CONTAINER_ID}')
+  let element = React.createElement(DynamicComponent, null)
+  ReactDOM.render(element, container, () => {
+    console.debug('Dynamic component mounted')
+  })
+}
+
+window.addEventListener('DOMContentLoaded', onLoad)
 //
 // co(function * () {
 //   let terminal = sugoTerminal(url)
@@ -33,9 +63,15 @@ console.log('TERMINAL_URL', TERMINAL_URL)
    */
   DEFAULT_HTML: `
 <html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
+<script src="js/external.cc.js"></script>
+</head>
 <body>
-"hoge"
-</body>
+<div id="${CONTAINER_ID}">
+This is root of dynamic content
+</div>
 </body>
 </html>
 `

@@ -46,12 +46,12 @@ const Component = React.createClass({
     return {
       script: DEFAULT_SCRIPT,
       html: DEFAULT_HTML,
-      scriptBusy: false,
       scriptError: null,
       tab: 'WORKSPACE',
       globals: {
         co,
         sugoTerminal,
+        require: window.require,
         TERMINAL_URL: `http://${hostname}:${port}/terminals`
       }
     }
@@ -74,6 +74,8 @@ const Component = React.createClass({
               </ApSectionHeader>
               <ApSectionBody>
                 <SgExampleWorkspace { ...{ html, script, globals } }
+                  compile={ s.compileScript }
+                  onChange={ s.handleChange }
                 />
               </ApSectionBody>
             </ApSection>
@@ -92,18 +94,20 @@ const Component = React.createClass({
     const s = this
   },
 
-  runScript () {
+  // --------------------
+  // custom
+  // --------------------
+
+  handleChange (e) {
+    const s = this
+    let { html, script, globals } = e
+    s.setState({ html, script, globals })
+  },
+
+  compileScript (script) {
     const s = this
     let { state } = s
-
-    co(function * () {
-      s.setState({ scriptBusy: true })
-      let compiled = yield compileAgent('/actions/compile').compile(state.script)
-      console.log('compiled script:', compiled)
-      s.setState({ scriptBusy: false })
-    }).catch((scriptError) => {
-      s.setState({ scriptError, scriptBusy: false })
-    })
+    return compileAgent('/actions/compile').compile(script)
   }
 })
 
