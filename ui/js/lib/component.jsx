@@ -8,22 +8,23 @@ require('babel-polyfill')
 
 import React, {PropTypes as types} from 'react'
 
+import cloudAgent from 'sugo-cloud/lib/agent'
 import compileAgent from 'sugo-endpoint-compile/lib/agent'
 
 import {
   ApContainer, ApButton,
-  ApSection, ApSectionHeader, ApSectionBody,
+  ApSection, ApSectionHeader, ApSectionBody
 } from 'apeman-react-basic'
 import {
   SgExample,
   SgExampleHeader,
   SgExampleBody,
   SgExampleWorkspace,
-  SgExampleFooter,
-  SgExampleStyle
+  SgExampleFooter
 } from 'sugo-react-example'
 import co from 'co'
 import sugoTerminal from 'sugo-terminal'
+import sugoObserver from 'sugo-observer'
 
 import {DEFAULT_SCRIPT, DEFAULT_HTML} from './snippets'
 
@@ -46,13 +47,20 @@ const Component = React.createClass({
     return {
       script: DEFAULT_SCRIPT,
       html: DEFAULT_HTML,
-      scriptError: null,
       tab: 'WORKSPACE',
       globals: {
-        co,
-        sugoTerminal,
-        require: window.require,
-        TERMINAL_URL: `http://${hostname}:${port}/terminals`
+        require (name) {
+          let modules = {
+            co,
+            'sugo-terminal': sugoTerminal,
+            'sugo-observer': sugoObserver
+          }
+          if (modules[ name ]) {
+            return modules[ name ]
+          }
+          return window.require(name)
+        },
+        TERMINAL_URL: `http://${hostname}:${port}/terminals` // TODO Use `location.host`
       }
     }
   },
@@ -60,14 +68,21 @@ const Component = React.createClass({
   render () {
     const s = this
     let { state, props } = s
-    let { pkg, color } = props
+    let { pkg } = props
     let { tab, script, html, globals } = state
     return (
       <div>
-        <SgExampleStyle dominant={ color }/>
         <SgExample>
           <SgExampleHeader { ...{ tab, pkg } } onTabChange={ (e) => s.setState({tab: e.tab}) }/>
           <SgExampleBody hidden={ tab !== 'WORKSPACE' }>
+            <ApSection>
+              <ApSectionHeader lined>
+                Info
+              </ApSectionHeader>
+              <ApSectionBody>
+
+              </ApSectionBody>
+            </ApSection>
             <ApSection>
               <ApSectionHeader lined>
                 Playground
@@ -76,11 +91,12 @@ const Component = React.createClass({
                 <SgExampleWorkspace { ...{ html, script, globals } }
                   compile={ s.compileScript }
                   onChange={ s.handleChange }
+                  pipeConsole={ true }
                 />
               </ApSectionBody>
             </ApSection>
           </SgExampleBody>
-          <SgExampleBody hidden={ tab !== 'GUIDE' }>
+          <SgExampleBody hidden={ tab !== 'DOCUMENT' }>
           </SgExampleBody>
           <SgExampleFooter>
 
@@ -92,6 +108,17 @@ const Component = React.createClass({
 
   componentDidMount () {
     const s = this
+    let { protocol, host } = window.location
+    s.observer = sugoObserver(`${protocol}//${host}/observers`, (data) => {
+      console.log('observed')
+    })
+    s.observer.start()
+    s.updateInfo()
+  },
+
+  componentWillUnmount () {
+    const s = this
+    s.observer.stop()
   },
 
   // --------------------
@@ -100,7 +127,7 @@ const Component = React.createClass({
 
   handleChange (e) {
     const s = this
-    let { html, script, globals } = e
+    let { html, script, globals } = e.values
     s.setState({ html, script, globals })
   },
 
@@ -108,6 +135,14 @@ const Component = React.createClass({
     const s = this
     let { state } = s
     return compileAgent('/actions/compile').compile(script)
+  },
+
+  updateInfo () {
+    const s = this
+    co(function * () {
+      let spots = yield cloudAgent().spots()
+      console.log('spots',spots)
+    }).catch((err) => console.error(err))
   }
 })
 
