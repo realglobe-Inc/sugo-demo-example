@@ -19,6 +19,7 @@ require('babel-polyfill')
 import React, {PropTypes as types} from 'react'
 import ReactDOM from 'react-dom'
 import {ApBigButton, ApButton} from 'apeman-react-button'
+import {ApSelect} from 'apeman-react-select'
 import co from 'co'
 import sugoTerminal from 'sugo-terminal'
 import sugoObserver from 'sugo-observer'
@@ -33,21 +34,28 @@ const DynamicComponent = React.createClass({
   // --------------------
   
   getInitialState () {
-    let {spots} = window
-    console.log('spots', spots[0])
+    const s = this
+    let {spots} = s.props 
     return {
-      spotKey: 'spot01'
+      spotKey: spots.length > 0 ? spots[0].key : null
     }
   },
 
   render () {
     const s = this
-    let {state} = s
-    let {spotKey} = state
-    
+    let { state, props } = s
+    let { spots } = props
     return (
       <div className='dynamic-component'>
+        <div>
+          <ApSelect options={ 
+            (spots || []).reduce((opt, sp) => Object.assign(opt, {[sp.key]: sp.key}), {}) 
+           } name='spotKey' value={ state.spotKey }
+             onChange={ (e) => s.setState({ spotKey: e.target.value }) }
+           />
+        </div>
         <ApBigButton onTap={ () => s.withTerminal(function * sendPing(terminal){
+            let {spotKey} = s.state
             console.log('terminal', terminal)
             let spot = yield terminal.connect(spotKey)
             let noop = spot.noop()
@@ -84,8 +92,9 @@ const DynamicComponent = React.createClass({
   }
 })
 
+let { spots } = window
 let container = document.getElementById('${CONTAINER_ID}')
-let element = (<DynamicComponent/>)
+let element = (<DynamicComponent spots={ spots || [] }/>)
 ReactDOM.render(element, container)
 
 `,
