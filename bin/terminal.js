@@ -6,5 +6,5 @@
 const terminal = require('../lib/terminal')
 
 terminal()
-  .then(() => console.log('Terminal started'))
-  .catch((err) => console.error('Terminal error', err))
+  .then(() => process.exit(0))
+  .catch(() => process.exit(1))

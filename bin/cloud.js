@@ -6,5 +6,5 @@
 const cloud = require('../lib/cloud')
 
 cloud()
-  .then(() => console.log('Cloud started'))
-  .catch((err) => console.error('Cloud error', err))
+  .then(() => process.exit(0))
+  .catch(() => process.exit(1))

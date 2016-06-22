@@ -19,6 +19,7 @@ describe('terminal', () => {
     let storage = `${__dirname}/../tmp/testing-terminal`
     injectmock(process.env, 'STORAGE', storage)
     injectmock(process.env, 'PORT', port)
+    injectmock(process.env, 'INTERVAL', 120)
   }))
 
   after(() => co(function * () {
@@ -29,7 +30,8 @@ describe('terminal', () => {
     let cloudInstance = yield cloud()
     let spotInstance = yield spot()
     let terminalInstance = yield terminal()
-    yield apemansleep.sleep(300)
+    yield apemansleep.sleep(500)
+    yield terminalInstance.kill()
     yield terminalInstance.disconnect()
     yield spotInstance.disconnect()
     yield cloudInstance.close()
