@@ -23,6 +23,7 @@ import {
   SgExampleAbout,
   SgExampleInstruction
 } from 'sugo-react-example'
+import sgReactComponents from 'sg-react-components'
 import co from 'co'
 import sugoTerminal from 'sugo-terminal'
 import sugoObserver from 'sugo-observer'
@@ -32,6 +33,10 @@ import markdowns from './markdowns'
 
 /** @lends Component */
 const Component = React.createClass({
+  // --------------------
+  // Specs
+  // --------------------
+  
   propTypes: {
     /** Port number of the cloud */
     port: types.number,
@@ -51,7 +56,9 @@ const Component = React.createClass({
       html: DEFAULT_HTML,
       tab: 'DEMO',
       playground: false,
+      refreshing: false,
       tooltip: null,
+      cloud: {},
       terminals: [],
       spots: [],
       globals: {
@@ -59,7 +66,8 @@ const Component = React.createClass({
           let modules = {
             co,
             'sugo-terminal': sugoTerminal,
-            'sugo-observer': sugoObserver
+            'sugo-observer': sugoObserver,
+            'sg-react-components': sgReactComponents
           }
           if (modules[ name ]) {
             return modules[ name ]
@@ -74,17 +82,22 @@ const Component = React.createClass({
     const s = this
     let { state, props } = s
     let { pkg } = props
-    let { tab, script, html, globals, spots } = state
+    let { tab, script, html, globals, cloud, spots, terminals } = state
     return (
       <div>
         <SgExample>
           <SgExampleHeader { ...{ tab, pkg } }
             spots={ spots }
-            setupSpot={ () => s.setState({ tooltip: markdowns[ '12.Run Spot' ] }) }
+            runSpot={ () => s.setState({ tooltip: markdowns[ '12.Run Spot' ] }) }
             onTabChange={ (e) => s.setTab(e.tab) }/>
           <SgExampleBody hidden={ tab !== 'DEMO' }>
             <SgExampleAbout pkg={pkg}/>
-            <SgExampleStatus spots={ spots }/>
+            <SgExampleStatus spots={ spots }
+                             terminals={ terminals }
+                             cloud={ cloud }
+                             spinning={ state.refreshing }
+                             onRefresh={ s.refreshStatus }
+            />
             <SgExamplePlayground { ...{ html, script, globals } }
               compile={ s.compileScript }
               onChange={ s.handleChange }
@@ -105,6 +118,7 @@ const Component = React.createClass({
 
           </SgExampleFooter>
           <SgExampleTooltip onClose={ () => s.setState({ tooltip: null }) }
+                            src={ state.tooltip }
                             hidden={ !state.tooltip }
           />
         </SgExample>
@@ -116,16 +130,19 @@ const Component = React.createClass({
     const s = this
     let { protocol, host, hash } = window.location
     s.observer = sugoObserver(`${protocol}//${host}/observers`, (data) => {
-      console.log('observed')
+      console.log('observed', data)
+      s.refreshStatus()
     })
     s.observer.start()
-    s.updateInfo()
+    s.refreshStatus()
     s.setTab(String(hash).replace(/^#/, '').toUpperCase())
   },
 
   componentWillUnmount () {
     const s = this
     s.observer.stop()
+
+    clearTimeout(s._statusRefreshTimer)
   },
 
   // --------------------
@@ -151,12 +168,36 @@ const Component = React.createClass({
     return compileAgent('/actions/compile').compile(script)
   },
 
-  updateInfo () {
+  refreshStatus (delay = 300) {
     const s = this
-    co(function * () {
-      let spots = yield cloudAgent().spots()
-      console.log('spots', spots)
-    }).catch((err) => console.error(err))
+    let { state } = s
+    if (state.refreshing) {
+      return
+    }
+    s.setState({ refreshing: true })
+    s._statusRefreshTimer = setTimeout(() => {
+      let { location } = window
+      if (!location) {
+        return
+      }
+      let { host } = location
+      co(function * () {
+        let spots = yield cloudAgent().spots()
+        let terminals = yield cloudAgent().terminals()
+        console.log('spots', spots)
+        s.setState({
+          spots,
+          terminals,
+          cloud: Object.assign(state.cloud || {}, { host })
+        })
+      })
+        .catch((err) => {
+          console.error(err)
+        })
+        .then(() => {
+          s.setState({ refreshing: false })
+        })
+    }, delay)
   },
 
   togglePlayground () {

@@ -6,5 +6,5 @@
 const spot = require('../lib/spot')
 
 spot()
-  .then(() => process.exit(0))
+  .then(() => {})
   .catch(() => process.exit(1))

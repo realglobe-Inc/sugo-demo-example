@@ -1,4 +1,4 @@
-sg-example{ font-family:&quot;ヒラギノ角ゴ ProN W3&quot;, &quot;Hiragino Kaku Gothic ProN&quot;, メイリオ, Meiryo, sans-serif; }
+.sg-example{ font-family:&quot;ヒラギノ角ゴ ProN W3&quot;, &quot;Hiragino Kaku Gothic ProN&quot;, メイリオ, Meiryo, sans-serif; }
 .sg-example-header.ap-header{ border-bottom:1px solid #F0F0F0; }
 .sg-example-header.ap-header .ap-header-logo{ padding:0 2px; }
 .sg-example-playground .ap-builder{ height:320px; }
@@ -10,15 +10,22 @@ sg-example{ font-family:&quot;ヒラギノ角ゴ ProN W3&quot;, &quot;Hiragino K
 .sg-example-navbar-title{ color:#888; }
 .sg-example-navbar-side{ display:inline-block;width:48px; }
 
-.sg-example-action{ text-align:center;padding:8px 0;margin:0 auto; }
+.sg-example-action{ text-align:center;padding:16px 0 8px;margin:0 auto; }
 .sg-example-links a:link{ color:rgba(153, 169, 50, 1);text-decoration:none; }
 .sg-example-links a:link:hover{ text-decoration:underline; }
 .sg-example-tooltip{ position:fixed;box-sizing:border-box;transition:left 700ms, top 700ms, right 700ms, bottom 700ms;z-index:24;background:rgba(255,255,255,0.8);top:0;left:0;right:0;bottom:0;overflow:hidden;border:1px solid #EEE; }
+.sg-example-tooltip pre{ background:#FAFAFA;border:1px solid #F0F0F0;padding:8px 4px;box-sizing:border-box;color:#555; }
 .sg-example-tooltip-hidden{ right:50%;left:50%;top:50%;bottom:50%;pointer-events:none; }
 .sg-example-tooltip-content{ margin:8px 16px;padding:8px;background:#FFF;border:1px solid #F0F0F0;border-radius:4px; }
 .sg-example-snippet{ padding:8px 4px;background:#F0F0F0;font-size:small;margin:4px 0;border-radius:8px;border:1px solid #E0E0E0; }
-
+.sg-example-about{ padding:0 2px; }
+.sg-example-about a{ color:rgba(153, 169, 50, 1); }
 .sg-example-instruction pre{ background:#FAFAFA;border:1px solid #F0F0F0;padding:8px 4px;box-sizing:border-box;color:#555; }
+.sg-example .ap-section-header-lined{ border-bottom-color:rgba(153, 169, 50, 1); }
+.sg-example-section-icon{ background:rgba(153, 169, 50, 1);display:inline-flex;margin-right:2px;color:white;border-radius:50%;justify-content:center;align-items:center;font-size:10px;width:16px;height:16px;position:relative;top:-2px; }
+.sg-example .ap-section{ position:relative; }
+.sg-example .ap-section-body{ position:relative; }
+.sg-example .sg-section-spinner{ position:absolute;left:0;top:0;right:0;bottom:0;z-index:3;background:rgba(255,255,255,0.8);color:#CCC; }
 
 
 .sg-microphone{ display:inline-flex;justify-content:center;align-items:center;position:relative;cursor:pointer;color:inherit; }

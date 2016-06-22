@@ -7,11 +7,12 @@
   "scripts": {
     "test": "./ci/test.js",
     "prepublish": "./ci/compile.js && ./ci/build.js",
-    "start": "./bin/cloud.js & ./bin/spot.js",
-    "debug:cloud": "DEBUG=sg:* ./bin/cloud.js",
-    "debug:spot": "DEBUG=sg:* ./bin/spot.js",
-    "debug:terminal": "DEBUG=sg:* ./bin/terminal.js",
-    "debug:ui": "DEBUG=sg:* ./bin/ui.js"
+    "start": "./bin/cloud.js",
+    "cloud": "./bin/cloud.js",
+    "spot": "./bin/spot.js",
+    "terminal": "./bin/terminal.js",
+    "ui": "./bin/ui.js",
+    "debug": "./ci/watch.js & DEBUG=sg:* ./bin/cloud.js"
   },
   "repository": "realglobe-Inc/sugo-demo-example",
   "keywords": [
@@ -46,6 +47,7 @@
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "sg-compiler": "^1.0.0",
+    "sg-react-components": "^1.2.7",
     "sugo-cloud": "^1.2.0",
     "sugo-endpoint-compile": "^1.0.1",
     "sugo-interface-noop": "^1.0.0",

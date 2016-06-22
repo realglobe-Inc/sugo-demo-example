@@ -13,9 +13,12 @@ module.exports = Object.assign(exports, {
    * @type {string}
    */
   DEFAULT_SCRIPT: `
+
+require('babel-polyfill')
+
 import React, {PropTypes as types} from 'react'
 import ReactDOM from 'react-dom'
-import {ApButton} from 'apeman-react-button'
+import {ApBigButton, ApButton} from 'apeman-react-button'
 import co from 'co'
 import sugoTerminal from 'sugo-terminal'
 import sugoObserver from 'sugo-observer'
@@ -25,29 +28,56 @@ import sugoObserver from 'sugo-observer'
  * @class DynamicComponent
  */
 const DynamicComponent = React.createClass({
-  render () {
-     return (
-      <div className='dynamic-component'>
-        <ApButton>Ping!</ApButton>
-      </div>
-     )
+  // --------------------
+  // Specs
+  // --------------------
+  
+  getInitialState () {
+    return {
+      spotKey: 'spot01'
+    }
   },
+
+  render () {
+    const s = this
+    let {state} = s
+    let {spotKey} = state
+    return (
+      <div className='dynamic-component'>
+        <ApBigButton onTap={ () => s.withTerminal(function * sendPing(terminal){
+            console.log('terminal', terminal)
+            let spot = yield terminal.connect(spotKey)
+            let noop = spot.noop()
+            console.log('Send ping to noop...')
+            let pong = yield noop.ping()
+            console.log(${'`...received ping from noop: "${pong}"`'})
+            yield spot.disconnect()
+        }) }>Ping!</ApBigButton>
+      </div>
+    )
+  },
+  
+  // --------------------
+  // LifeCycle
+  // --------------------
   
   componentDidMount () {
     const s = this
     let {protocol, host} = window.location
     s.terminal = sugoTerminal(${'`${protocol}//${host}/terminals`'})
-    // co(function * () {
-    //   let terminal = sugoTerminal(url)
-    //   let spot01 = yield terminal.connect('spot01')
-    //   // Take ping-pong with noop interface.
-    //   {
-    //     let noop = spot01.noop()
-    //     console.log('Send ping to noop...')
-    //     let pong = yield noop.ping()
-    //     console.log(${'`...received ping from noop: "${pong}"`'})
-    //   }
-    // }).catch((err) => console.error(err))
+  },
+  
+  // --------------------
+  // custom
+  // --------------------
+  
+  withTerminal (handler) {
+    const s = this
+    let {terminal} = s
+    if (!terminal) {
+      return
+    }
+    co(handler, terminal).catch((err) => console.error(err)) 
   }
 })
 
