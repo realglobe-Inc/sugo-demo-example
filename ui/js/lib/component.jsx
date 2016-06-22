@@ -36,7 +36,7 @@ const Component = React.createClass({
   // --------------------
   // Specs
   // --------------------
-  
+
   propTypes: {
     /** Port number of the cloud */
     port: types.number,
@@ -180,23 +180,15 @@ const Component = React.createClass({
       if (!location) {
         return
       }
-      let { host } = location
       co(function * () {
         let spots = yield cloudAgent().spots()
         let terminals = yield cloudAgent().terminals()
-        console.log('spots', spots)
-        s.setState({
-          spots,
-          terminals,
-          cloud: Object.assign(state.cloud || {}, { host })
-        })
+        let cloud = { host: location.host }
+        let globals = Object.assign(state.globals, { spots })
+        s.setState({ spots, terminals, cloud, globals })
       })
-        .catch((err) => {
-          console.error(err)
-        })
-        .then(() => {
-          s.setState({ refreshing: false })
-        })
+        .catch((err) => console.error(err))
+        .then(() => s.setState({ refreshing: false }))
     }, delay)
   },
 

@@ -33,6 +33,8 @@ const DynamicComponent = React.createClass({
   // --------------------
   
   getInitialState () {
+    let {spots} = window
+    console.log('spots', spots[0])
     return {
       spotKey: 'spot01'
     }
@@ -42,6 +44,7 @@ const DynamicComponent = React.createClass({
     const s = this
     let {state} = s
     let {spotKey} = state
+    
     return (
       <div className='dynamic-component'>
         <ApBigButton onTap={ () => s.withTerminal(function * sendPing(terminal){
