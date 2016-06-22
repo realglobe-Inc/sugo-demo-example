@@ -15,7 +15,7 @@ const co = require('co')
 const React = require('react')
 const { SgExampleStyle } = require('sugo-react-example')
 const { readFileAsync, writeFileAsync } = require('apemanfs')
-const { color } = require('../lib/configs')
+const { color } = require('../lib/configs')()
 
 apeTasking.runTasks('compile', [
   // JSX -> JS

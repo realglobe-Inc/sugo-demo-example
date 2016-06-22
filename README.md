@@ -50,47 +50,85 @@ Demo of sugo example
 <!-- Sections Start -->
 <a name="sections"></a>
 
-<!-- Section from "doc/guides/01.Installation.md.hbs" Start -->
+<!-- Section from "doc/guides/01.Quick Start.md.hbs" Start -->
 
-<a name="section-doc-guides-01-installation-md"></a>
-Installation
+<a name="section-doc-guides-01-quick-start-md"></a>
+Quick Start
 -----
+
+Deploy to the [Heroku][heroku_url] and play it!
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+[heroku_url]: https://www.heroku.com/
+
+<!-- Section from "doc/guides/01.Quick Start.md.hbs" End -->
+
+<!-- Section from "doc/guides/10.Setup Cloud.md.hbs" Start -->
+
+<a name="section-doc-guides-10-setup-cloud-md"></a>
+Setup Cloud
+-----
+
+Install the CLI to your spot server
 
 ```bash
 $ npm install sugo-demo-example -g
 ```
 
+Then, start the server
 
-<!-- Section from "doc/guides/01.Installation.md.hbs" End -->
+```bash
+$ PORT=300 sugo-demo-example cloud
+```
 
-<!-- Section from "doc/guides/02.Usage.md.hbs" Start -->
+In the most of cases, you need to setup reverse-proxy (like [nginx][nginx_url]) to exports the server to outer world.
 
-<a name="section-doc-guides-02-usage-md"></a>
-Usage
+[nginx_url]: https://www.nginx.com/
+
+
+<!-- Section from "doc/guides/10.Setup Cloud.md.hbs" End -->
+
+<!-- Section from "doc/guides/12.Run Spot.md.hbs" Start -->
+
+<a name="section-doc-guides-12-run-spot-md"></a>
+Run Spot
 -----
 
-Run example cloud
+Install the CLI to machine which the spot runs on. 
 
 ```bash
-$ sugo-demo-example cloud
+$ npm install sugo-demo-example -g
+```
+
+Then, connect spot to the cloud
+
+```bash
+$ HOST=__hostname_of_your_cloud__ sugo-demo-example spot 
 ```
 
 
-Run example spot
+<!-- Section from "doc/guides/12.Run Spot.md.hbs" End -->
+
+<!-- Section from "doc/guides/13.Use Terminal.md.hbs" Start -->
+
+<a name="section-doc-guides-13-use-terminal-md"></a>
+Use Terminal
+-----
+
+Install the CLI to machine which the use terminal.
 
 ```bash
-$ sugo-demo-example spot
+$ npm install sugo-demo-example -g
 ```
 
-
-Run example terminal
+Then, rune the example terminal
 
 ```bash
-$ sugo-demo-example terminal
+$ HOST=__hostname_of_your_cloud__ sugo-demo-example terminal
 ```
 
-
-<!-- Section from "doc/guides/02.Usage.md.hbs" End -->
+<!-- Section from "doc/guides/13.Use Terminal.md.hbs" End -->
 
 
 <!-- Sections Start -->

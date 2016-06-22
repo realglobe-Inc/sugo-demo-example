@@ -19,7 +19,9 @@ import {
   SgExample,
   SgExampleHeader,
   SgExampleBody,
-  SgExampleWorkspace,
+  SgExamplePlayground,
+  SgExampleStatus,
+  SgExampleLinks,
   SgExampleFooter
 } from 'sugo-react-example'
 import co from 'co'
@@ -47,7 +49,10 @@ const Component = React.createClass({
     return {
       script: DEFAULT_SCRIPT,
       html: DEFAULT_HTML,
-      tab: 'WORKSPACE',
+      tab: 'DEMO',
+      playground: false,
+      terminals: [],
+      spots: [],
       globals: {
         require (name) {
           let modules = {
@@ -59,8 +64,7 @@ const Component = React.createClass({
             return modules[ name ]
           }
           return window.require(name)
-        },
-        TERMINAL_URL: `http://${hostname}:${port}/terminals` // TODO Use `location.host`
+        }
       }
     }
   },
@@ -69,34 +73,25 @@ const Component = React.createClass({
     const s = this
     let { state, props } = s
     let { pkg } = props
-    let { tab, script, html, globals } = state
+    let { tab, script, html, globals, spots } = state
     return (
       <div>
         <SgExample>
-          <SgExampleHeader { ...{ tab, pkg } } onTabChange={ (e) => s.setState({tab: e.tab}) }/>
-          <SgExampleBody hidden={ tab !== 'WORKSPACE' }>
-            <ApSection>
-              <ApSectionHeader lined>
-                Info
-              </ApSectionHeader>
-              <ApSectionBody>
-
-              </ApSectionBody>
-            </ApSection>
-            <ApSection>
-              <ApSectionHeader lined>
-                Playground
-              </ApSectionHeader>
-              <ApSectionBody>
-                <SgExampleWorkspace { ...{ html, script, globals } }
-                  compile={ s.compileScript }
-                  onChange={ s.handleChange }
-                  pipeConsole={ true }
-                />
-              </ApSectionBody>
-            </ApSection>
+          <SgExampleHeader { ...{ tab, pkg } }
+            spots={ spots }
+            onTabChange={ (e) => s.setTab(e.tab) }/>
+          <SgExampleBody hidden={ tab !== 'DEMO' }>
+            <SgExampleStatus spots={ spots }/>
+            <SgExamplePlayground { ...{ html, script, globals } }
+              compile={ s.compileScript }
+              onChange={ s.handleChange }
+              pipeConsole={ true }
+              closed={ !state.playground }
+              onToggle={ s.togglePlayground }
+            />
           </SgExampleBody>
-          <SgExampleBody hidden={ tab !== 'DOCUMENT' }>
+          <SgExampleBody hidden={ tab !== 'GUIDES' }>
+            <SgExampleLinks links={ require('../../../doc/links.json') }/>
           </SgExampleBody>
           <SgExampleFooter>
 
@@ -108,12 +103,13 @@ const Component = React.createClass({
 
   componentDidMount () {
     const s = this
-    let { protocol, host } = window.location
+    let { protocol, host, hash } = window.location
     s.observer = sugoObserver(`${protocol}//${host}/observers`, (data) => {
       console.log('observed')
     })
     s.observer.start()
     s.updateInfo()
+    s.setTab(String(hash).replace(/^#/, ''))
   },
 
   componentWillUnmount () {
@@ -124,6 +120,13 @@ const Component = React.createClass({
   // --------------------
   // custom
   // --------------------
+
+  setTab (tab) {
+    const s = this
+    tab = tab || 'DEMO'
+    s.setState({ tab })
+    window.location.hash = tab
+  },
 
   handleChange (e) {
     const s = this
@@ -141,8 +144,14 @@ const Component = React.createClass({
     const s = this
     co(function * () {
       let spots = yield cloudAgent().spots()
-      console.log('spots',spots)
+      console.log('spots', spots)
     }).catch((err) => console.error(err))
+  },
+
+  togglePlayground () {
+    const s = this
+    let { state } = s
+    s.setState({ playground: !state.playground })
   }
 })
 
