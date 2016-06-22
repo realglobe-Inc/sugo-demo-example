@@ -64,11 +64,18 @@ Deploy to the [Heroku][heroku_url] and play it!
 
 <!-- Section from "doc/guides/01.Quick Start.md.hbs" End -->
 
-<!-- Section from "doc/guides/10.Setup Cloud.md.hbs" Start -->
+<!-- Section from "doc/guides/10.How to.md.hbs" Start -->
 
-<a name="section-doc-guides-10-setup-cloud-md"></a>
-Setup Cloud
------
+<a name="section-doc-guides-10-how-to-md"></a>
+How to
+-------
+
+<!-- Section from "doc/guides/10.How to.md.hbs" End -->
+
+<!-- Section from "doc/guides/11.Setup Cloud.md.hbs" Start -->
+
+<a name="section-doc-guides-11-setup-cloud-md"></a>
+### Setup Cloud
 
 Install the CLI to your spot server
 
@@ -87,13 +94,13 @@ In the most of cases, you need to setup reverse-proxy (like [nginx][nginx_url]) 
 [nginx_url]: https://www.nginx.com/
 
 
-<!-- Section from "doc/guides/10.Setup Cloud.md.hbs" End -->
+<!-- Section from "doc/guides/11.Setup Cloud.md.hbs" End -->
 
 <!-- Section from "doc/guides/12.Run Spot.md.hbs" Start -->
 
 <a name="section-doc-guides-12-run-spot-md"></a>
-Run Spot
------
+### Run Spot
+
 
 Install the CLI to machine which the spot runs on. 
 
@@ -113,8 +120,8 @@ $ HOST=__hostname_of_your_cloud__ sugo-demo-example spot
 <!-- Section from "doc/guides/13.Use Terminal.md.hbs" Start -->
 
 <a name="section-doc-guides-13-use-terminal-md"></a>
-Use Terminal
------
+### Use Terminal
+
 
 Install the CLI to machine which the use terminal.
 

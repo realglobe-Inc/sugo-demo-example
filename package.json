@@ -48,7 +48,7 @@
     "sugo-cloud": "^1.2.0",
     "sugo-endpoint-compile": "^1.0.1",
     "sugo-interface-noop": "^1.0.0",
-    "sugo-observer": "^1.0.1",
+    "sugo-observer": "^1.0.2",
     "sugo-react-example": "^1.1.1",
     "sugo-spot": "^1.0.14",
     "sugo-terminal": "^1.0.9"

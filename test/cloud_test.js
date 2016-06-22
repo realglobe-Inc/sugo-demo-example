@@ -26,6 +26,7 @@ describe('cloud', () => {
 
   after(() => co(function * () {
     injectmock.restoreAll()
+    yield apemansleep.sleep(10)
   }))
 
   it('Cloud', () => co(function * () {

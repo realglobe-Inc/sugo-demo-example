@@ -13,7 +13,7 @@ const expandglob = require('expandglob')
 
 module.exports = {
   force: true,
-  mode: '444',
+  mode: '644',
   data: {
     pkg,
     files: expandglob
@@ -25,12 +25,13 @@ module.exports = {
   },
   tmpl: `
 /**
+ * !! This files aut generated and do not edit manually
  * Markdown contents
  * @namespace Markdowns
  */
  'use strict'
 
-let restore = (text) => text.replace(/&#x60;/g,'${'`'}')
+let restore = (text) => text.replace(/&#x60;/g,'${'`'}').replace(/&#x3D;/g, '=')
   
 {{#each files}}
 /** Converted from "doc/guides/{{name}}.md.hbs" */

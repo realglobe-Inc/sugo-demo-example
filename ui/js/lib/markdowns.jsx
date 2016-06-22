@@ -1,14 +1,15 @@
 
 /**
+ * !! This files aut generated and do not edit manually
  * Markdown contents
  * @namespace Markdowns
  */
  'use strict'
 
-let restore = (text) => text.replace(/&#x60;/g,'`')
-
+let restore = (text) => text.replace(/&#x60;/g,'`').replace(/&#x3D;/g, '=')
+  
 /** Converted from "doc/guides/01.Quick Start.md.hbs" */
-exports['01.Quick Start'] = restore(`Quick Start
+exports[ '01.Quick Start' ] = restore(`Quick Start
 -----
 
 Deploy to the [Heroku][heroku_url] and play it!
@@ -17,9 +18,12 @@ Deploy to the [Heroku][heroku_url] and play it!
 
 [heroku_url]: https://www.heroku.com/`)
 
-/** Converted from "doc/guides/10.Setup Cloud.md.hbs" */
-exports['10.Setup Cloud'] = restore(`Setup Cloud
------
+/** Converted from "doc/guides/10.How to.md.hbs" */
+exports[ '10.How to' ] = restore(`How to
+-------`)
+
+/** Converted from "doc/guides/11.Setup Cloud.md.hbs" */
+exports[ '11.Setup Cloud' ] = restore(`### Setup Cloud
 
 Install the CLI to your spot server
 
@@ -39,10 +43,10 @@ In the most of cases, you need to setup reverse-proxy (like [nginx][nginx_url]) 
 `)
 
 /** Converted from "doc/guides/12.Run Spot.md.hbs" */
-exports['12.Run Spot'] = restore(`Run Spot
------
+exports[ '12.Run Spot' ] = restore(`### Run Spot
 
-Install the CLI to machi which the spot runs on. 
+
+Install the CLI to machine which the spot runs on. 
 
 &#x60;&#x60;&#x60;bash
 $ npm install sugo-demo-example -g
@@ -51,15 +55,23 @@ $ npm install sugo-demo-example -g
 Then, connect spot to the cloud
 
 &#x60;&#x60;&#x60;bash
-$ HOST&#x3D;__hostname_of_your_cloud__ sugo-demo-example cloud 
+$ HOST&#x3D;__hostname_of_your_cloud__ sugo-demo-example spot 
 &#x60;&#x60;&#x60;
 `)
 
 /** Converted from "doc/guides/13.Use Terminal.md.hbs" */
-exports['13.Use Terminal'] = restore(`Use Terminal
------
+exports[ '13.Use Terminal' ] = restore(`### Use Terminal
 
-&#x60;&#x60;&#x60;jsx
 
+Install the CLI to machine which the use terminal.
+
+&#x60;&#x60;&#x60;bash
+$ npm install sugo-demo-example -g
+&#x60;&#x60;&#x60;
+
+Then, rune the example terminal
+
+&#x60;&#x60;&#x60;bash
+$ HOST&#x3D;__hostname_of_your_cloud__ sugo-demo-example terminal
 &#x60;&#x60;&#x60;`)
 

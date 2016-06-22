@@ -12,23 +12,23 @@ import cloudAgent from 'sugo-cloud/lib/agent'
 import compileAgent from 'sugo-endpoint-compile/lib/agent'
 
 import {
-  ApContainer, ApButton,
-  ApSection, ApSectionHeader, ApSectionBody
-} from 'apeman-react-basic'
-import {
   SgExample,
   SgExampleHeader,
   SgExampleBody,
   SgExamplePlayground,
   SgExampleStatus,
   SgExampleLinks,
-  SgExampleFooter
+  SgExampleFooter,
+  SgExampleTooltip,
+  SgExampleAbout,
+  SgExampleInstruction
 } from 'sugo-react-example'
 import co from 'co'
 import sugoTerminal from 'sugo-terminal'
 import sugoObserver from 'sugo-observer'
 
 import {DEFAULT_SCRIPT, DEFAULT_HTML} from './snippets'
+import markdowns from './markdowns'
 
 /** @lends Component */
 const Component = React.createClass({
@@ -51,6 +51,7 @@ const Component = React.createClass({
       html: DEFAULT_HTML,
       tab: 'DEMO',
       playground: false,
+      tooltip: null,
       terminals: [],
       spots: [],
       globals: {
@@ -79,8 +80,10 @@ const Component = React.createClass({
         <SgExample>
           <SgExampleHeader { ...{ tab, pkg } }
             spots={ spots }
+            setupSpot={ () => s.setState({ tooltip: markdowns[ '12.Run Spot' ] }) }
             onTabChange={ (e) => s.setTab(e.tab) }/>
           <SgExampleBody hidden={ tab !== 'DEMO' }>
+            <SgExampleAbout pkg={pkg}/>
             <SgExampleStatus spots={ spots }/>
             <SgExamplePlayground { ...{ html, script, globals } }
               compile={ s.compileScript }
@@ -91,11 +94,19 @@ const Component = React.createClass({
             />
           </SgExampleBody>
           <SgExampleBody hidden={ tab !== 'GUIDES' }>
+            <SgExampleInstruction src={ [
+              markdowns[ '11.Setup Cloud' ],
+              markdowns[ '12.Run Spot' ],
+              markdowns[ '13.Use Terminal' ]
+            ] }/>
             <SgExampleLinks links={ require('../../../doc/links.json') }/>
           </SgExampleBody>
           <SgExampleFooter>
 
           </SgExampleFooter>
+          <SgExampleTooltip onClose={ () => s.setState({ tooltip: null }) }
+                            hidden={ !state.tooltip }
+          />
         </SgExample>
       </div>
     )
@@ -109,7 +120,7 @@ const Component = React.createClass({
     })
     s.observer.start()
     s.updateInfo()
-    s.setTab(String(hash).replace(/^#/, ''))
+    s.setTab(String(hash).replace(/^#/, '').toUpperCase())
   },
 
   componentWillUnmount () {
@@ -123,9 +134,9 @@ const Component = React.createClass({
 
   setTab (tab) {
     const s = this
-    tab = tab || 'DEMO'
-    s.setState({ tab })
-    window.location.hash = tab
+    let valid = tab && !!~[ 'DEMO', 'GUIDES' ].indexOf(tab)
+    s.setState({ tab: valid ? tab : 'DEMO' })
+    window.location.hash = String(tab).toLowerCase()
   },
 
   handleChange (e) {
