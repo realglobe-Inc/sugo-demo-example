@@ -116,7 +116,7 @@ const Component = React.createClass({
               markdowns[ '11.Setup Cloud' ],
               markdowns[ '12.Run Spot' ],
               markdowns[ '13.Use Terminal' ]
-            ] }/>
+            ] } vars={ s.getMarkdownVars() }/>
             <SgExampleLinks links={ require('../../../doc/links.json') }/>
           </SgExampleBody>
           <SgExampleFooter>
@@ -124,6 +124,7 @@ const Component = React.createClass({
           </SgExampleFooter>
           <SgExampleTooltip onClose={ () => s.setState({ tooltip: null }) }
                             src={ state.tooltip }
+                            vars={ s.getMarkdownVars() }
                             hidden={ !state.tooltip }
           />
         </SgExample>
@@ -203,6 +204,14 @@ const Component = React.createClass({
     const s = this
     let { state } = s
     s.setState({ playground: !state.playground })
+  },
+
+  getMarkdownVars () {
+    const s = this
+    let { location } = window
+    return {
+      __hostname_of_your_cloud__: location && location.host
+    }
   }
 })
 
