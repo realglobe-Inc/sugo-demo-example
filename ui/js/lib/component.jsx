@@ -24,12 +24,23 @@ import {
   SgExampleInstruction
 } from 'sugo-react-example'
 import sgReactComponents from 'sg-react-components'
+import apemanReactBasic from 'apeman-react-basic'
+import apemansleep from 'apemansleep'
 import co from 'co'
 import sugoTerminal from 'sugo-terminal'
 import sugoObserver from 'sugo-observer'
 
 import {DEFAULT_SCRIPT, DEFAULT_HTML} from './snippets'
 import markdowns from './markdowns'
+
+const RequirePool = {
+  co,
+  apemansleep,
+  'sugo-terminal': sugoTerminal,
+  'sugo-observer': sugoObserver,
+  'sg-react-components': sgReactComponents,
+  'apeman-react-basic': apemanReactBasic
+}
 
 /** @lends Component */
 const Component = React.createClass({
@@ -63,14 +74,8 @@ const Component = React.createClass({
       spots: [],
       globals: {
         require (name) {
-          let modules = {
-            co,
-            'sugo-terminal': sugoTerminal,
-            'sugo-observer': sugoObserver,
-            'sg-react-components': sgReactComponents
-          }
-          if (modules[ name ]) {
-            return modules[ name ]
+          if (RequirePool[ name ]) {
+            return RequirePool[ name ]
           }
           return window.require(name)
         }
@@ -130,8 +135,10 @@ const Component = React.createClass({
     const s = this
     let { protocol, host, hash } = window.location
     s.observer = sugoObserver(`${protocol}//${host}/observers`, (data) => {
-      console.log('observed', data)
-      s.refreshStatus()
+      let { playground } = s.state
+      if (!playground) {
+        s.refreshStatus()
+      }
     })
     s.observer.start()
     s.refreshStatus()

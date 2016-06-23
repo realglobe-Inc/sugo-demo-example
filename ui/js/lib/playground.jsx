@@ -1,35 +1,4 @@
-
 /**
- * !! This is an auto-generated file and do not edit manually !! 
- * Snippet contents
- * @namespace Snippets
- */
-'use strict'
-
-/** Converted from "[object Object]" */
-exports.DEFAULT_HTML = `<!--
- Default HTML for playground
--->
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="css/theme.css">
-  <link rel="stylesheet" href="css/playground.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
-  <script src="js/external.cc.js"></script>
-</head>
-<body class="playground-body">
-<div id="playground-root">
-  <h3 class="playground-message">Loading dynamic contents...</h3>
-</div>
-</body>
-</html>
-`
-
-/** Converted from "[object Object]" */
-exports.DEFAULT_SCRIPT = `/**
  * Default script for playground
  */
 'use strict'
@@ -100,7 +69,7 @@ const DynamicComponent = React.createClass({
                   s.setState({pingAt: new Date().toLocaleTimeString()})
                   let pong = yield noop.ping()
                   s.setState({pongAt: new Date().toLocaleTimeString()})
-                  console.log(${'`'}...received ping from noop: "${'${'}pong${'}'}"${'`'})
+                  console.log(`...received ping from noop: "${pong}"`)
 
                   // Tear down
                   yield spot.disconnect()
@@ -108,7 +77,7 @@ const DynamicComponent = React.createClass({
               }) }
                 spinning={ pingAt && !pongAt }
                 primary={ !pingAt }
-              >{ pongAt ? ${'`'}Pong at ${'${'}pongAt${'}'}${'`'} : (pingAt ? 'Waiting...' : 'Send ping')} </ApBigButton>
+              >{ pongAt ? `Pong at ${pongAt}` : (pingAt ? 'Waiting...' : 'Send ping')} </ApBigButton>
 
             </div>
           </ApSelectableArticle.Content>
@@ -124,7 +93,7 @@ const DynamicComponent = React.createClass({
   componentDidMount () {
     const s = this
     let { protocol, host } = window.location
-    s.terminal = sugoTerminal(${'`'}${'${'}protocol${'}'}//${'${'}host${'}'}/terminals${'`'})
+    s.terminal = sugoTerminal(`${protocol}//${host}/terminals`)
   },
 
   // --------------------
@@ -145,5 +114,3 @@ let { spots } = window
 let container = document.getElementById('playground-root')
 let element = (<DynamicComponent spots={ spots || [] }/>)
 ReactDOM.render(element, container)
-`
-
