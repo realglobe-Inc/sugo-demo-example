@@ -102,7 +102,7 @@ In the most of cases, you need to setup reverse-proxy (like [nginx][nginx_url]) 
 ### Run Spot
 
 
-Install the CLI to machine which the spot runs on. 
+Install the CLI to machine which the spot runs on.
 
 ```bash
 $ npm install sugo-demo-example -g
@@ -111,7 +111,7 @@ $ npm install sugo-demo-example -g
 Then, connect spot to the cloud
 
 ```bash
-$ HOST=__hostname_of_your_cloud__ sugo-demo-example spot 
+$ HOST=__hostname_of_your_cloud__ sugo-demo-example spot
 ```
 
 
