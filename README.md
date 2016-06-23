@@ -112,8 +112,9 @@ $ npm install sugo-demo-example -g
 Then, connect spot to the cloud
 
 ```bash
-$ HOST=__hostname_of_your_cloud__ sugo-demo-example spot 
+$ HOST=__hostname_of_your_cloud__ SPOT_KEY=__your_own_spot_name__ sugo-demo-example spot
 ```
+
 
 
 <!-- Section from "doc/guides/12.Run Spot.md.hbs" End -->
