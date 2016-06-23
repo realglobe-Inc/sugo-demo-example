@@ -82,34 +82,37 @@ const DynamicComponent = React.createClass({
         >
           <ApSelectableArticle.Content contentFor={ String(spotKey) }>
             <div className='playground-row'>
-              <p>Send a ping and receive pong.</p>
-              <ApBigButton
-                onTap={ () => s.withTerminal(function * sendPing (terminal) {
-                  if (s.state.pongAt) {
-                    // Reset to send ping
-                    s.setState({pingAt: null, pongAt: null})
-                    return
-                  }
+              <div className='playground-item'>
+                <p>Send a ping and receive pong.</p>
+              </div>
+              <div className='playground-item'>
+                <ApBigButton
+                  onTap={ () => s.withTerminal(function * sendPing (terminal) {
+                    if (s.state.pongAt) {
+                      // Reset to send ping
+                      s.setState({pingAt: null, pongAt: null})
+                      return
+                    }
 
-                  // Set up
-                  let spot = yield terminal.connect(spotKey)
-                  let noop = spot.noop()
+                    // Set up
+                    let spot = yield terminal.connect(spotKey)
+                    let noop = spot.noop()
 
-                  // Do ping-pong
-                  console.log('Send ping to noop...')
-                  s.setState({pingAt: new Date().toLocaleTimeString()})
-                  let pong = yield noop.ping()
-                  s.setState({pongAt: new Date().toLocaleTimeString()})
-                  console.log(${'`'}...received ping from noop: "${'${'}pong${'}'}"${'`'})
+                    // Do ping-pong
+                    console.log('Send ping to noop...')
+                    s.setState({pingAt: new Date().toLocaleTimeString()})
+                    let pong = yield noop.ping()
+                    s.setState({pongAt: new Date().toLocaleTimeString()})
+                    console.log(${'`'}...received ping from noop: "${'${'}pong${'}'}"${'`'})
 
-                  // Tear down
-                  yield spot.disconnect()
-                  yield sleep(10)
-              }) }
-                spinning={ pingAt && !pongAt }
-                primary={ !pingAt }
-              >{ pongAt ? ${'`'}Pong at ${'${'}pongAt${'}'}${'`'} : (pingAt ? 'Waiting...' : 'Send ping')} </ApBigButton>
-
+                    // Tear down
+                    yield spot.disconnect()
+                    yield sleep(10)
+                }) }
+                  spinning={ pingAt && !pongAt }
+                  primary={ !pingAt }
+                >{ pongAt ? ${'`'}Pong at ${'${'}pongAt${'}'}${'`'} : (pingAt ? 'Waiting...' : 'Send ping')} </ApBigButton>
+              </div>
             </div>
           </ApSelectableArticle.Content>
         </ApSelectableArticle>
