@@ -43,6 +43,11 @@ Demo of sugo example
 <a name="overview"></a>
 
 
+[![favicon_url]][app_url]
+
+[app_url]: http://sugo-demo-example.herokuapp.com
+[favicon_url]: http://realglobe-inc.github.io/sugo-demo-example/images/favicon.svg
+
 
 <!-- Overview End -->
 
@@ -144,7 +149,7 @@ Install the CLI
 $ npm install sugo-demo-example -g
 ```
 
-Then, rune the example terminal
+Then, run the example terminal
 
 ```bash
 $ HOSTNAME=__your_cloud_hostname__ sugo-demo-example terminal

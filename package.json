@@ -1,6 +1,6 @@
 {
   "name": "sugo-demo-example",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Demo of sugo example",
   "main": "lib",
   "bin": "./bin/cli.js",
@@ -60,6 +60,7 @@
   "devDependencies": {
     "ape-compiling": "^4.3.2",
     "ape-covering": "^3.0.3",
+    "ape-deploying": "^5.0.2",
     "ape-formatting": "^1.0.0",
     "ape-releasing": "^4.0.1",
     "ape-reporting": "^3.0.1",
