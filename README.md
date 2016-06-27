@@ -149,7 +149,7 @@ Install the CLI
 $ npm install sugo-demo-example -g
 ```
 
-Then, rune the example terminal
+Then, run the example terminal
 
 ```bash
 $ HOSTNAME=__your_cloud_hostname__ sugo-demo-example terminal
