@@ -76,6 +76,7 @@
     "expandglob": "^3.0.2",
     "filecopy": "^2.0.0",
     "filedel": "^2.0.1",
+    "filelink": "^3.0.3",
     "injectmock": "^2.0.0",
     "sugo-cloud": "^1.2.7"
   },
