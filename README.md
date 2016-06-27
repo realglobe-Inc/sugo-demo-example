@@ -50,6 +50,19 @@ Demo of sugo example
 <!-- Sections Start -->
 <a name="sections"></a>
 
+<!-- Section from "doc/guides/00.Requirements.md.hbs" Start -->
+
+<a name="section-doc-guides-00-requirements-md"></a>
+Requirements
+-----
+
++ [Node.js ( >=6.x )][node_download_url]
+
+[node_download_url]: https://nodejs.org/en/download/
+
+
+<!-- Section from "doc/guides/00.Requirements.md.hbs" End -->
+
 <!-- Section from "doc/guides/01.Quick Start.md.hbs" Start -->
 
 <a name="section-doc-guides-01-quick-start-md"></a>
@@ -58,9 +71,10 @@ Quick Start
 
 Deploy to the [Heroku][heroku_url] and play it!
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/realglobe-Inc/sugo-demo-example/tree/heroku)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)][heroku_deploy_url]
 
 [heroku_url]: https://www.heroku.com/
+[heroku_deploy_url]: https://heroku.com/deploy?template=https://github.com/realglobe-Inc/sugo-demo-example/tree/heroku
 
 
 <!-- Section from "doc/guides/01.Quick Start.md.hbs" End -->
@@ -78,7 +92,7 @@ How to
 <a name="section-doc-guides-11-setup-cloud-md"></a>
 ### Setup Cloud
 
-Install the CLI to your spot server
+Install the CLI
 
 ```bash
 $ npm install sugo-demo-example -g
@@ -90,7 +104,7 @@ Then, start the server
 $ PORT=300 sugo-demo-example cloud
 ```
 
-In the most of cases, you need to setup reverse-proxy (like [nginx][nginx_url]) to exports the server to outer world.
+In the most of cases, you need to setup reverse-proxy (like [nginx][nginx_url]) to exports the server to the outer world.
 
 [nginx_url]: https://www.nginx.com/
 
@@ -102,17 +116,17 @@ In the most of cases, you need to setup reverse-proxy (like [nginx][nginx_url]) 
 <a name="section-doc-guides-12-run-spot-md"></a>
 ### Run Spot
 
+Install the CLI
 
-Install the CLI to machine which the spot runs on. 
 
 ```bash
 $ npm install sugo-demo-example -g
 ```
 
-Then, connect spot to the cloud
+Then, connect the spot to cloud
 
 ```bash
-$ HOST=__hostname_of_your_cloud__ sugo-demo-example spot 
+$ HOSTNAME=__your_cloud_hostname__ SPOT_KEY=__your_own_spot_name__ sugo-demo-example spot
 ```
 
 
@@ -124,7 +138,7 @@ $ HOST=__hostname_of_your_cloud__ sugo-demo-example spot
 ### Use Terminal
 
 
-Install the CLI to machine which the use terminal.
+Install the CLI
 
 ```bash
 $ npm install sugo-demo-example -g
@@ -133,8 +147,11 @@ $ npm install sugo-demo-example -g
 Then, rune the example terminal
 
 ```bash
-$ HOST=__hostname_of_your_cloud__ sugo-demo-example terminal
+$ HOSTNAME=__your_cloud_hostname__ sugo-demo-example terminal
 ```
+
+Or, you can try it from UI pages on the cloud.
+
 
 <!-- Section from "doc/guides/13.Use Terminal.md.hbs" End -->
 
