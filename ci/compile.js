@@ -53,7 +53,6 @@ apeTasking.runTasks('compile', [
     )
     yield writeFileAsync(`${__dirname}/../ui/css/theme.css`, style)
   }),
-
   // Compile scss
   () => co(function * () {
     let filenames = yield expandglob('ui/css/*.scss')
