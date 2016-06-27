@@ -50,6 +50,19 @@ Demo of sugo example
 <!-- Sections Start -->
 <a name="sections"></a>
 
+<!-- Section from "doc/guides/00.Requirements.md.hbs" Start -->
+
+<a name="section-doc-guides-00-requirements-md"></a>
+Requirements
+-----
+
++ [Node.js (>=6)][node_download_url]
+
+[node_download_url]: https://nodejs.org/en/download/
+
+
+<!-- Section from "doc/guides/00.Requirements.md.hbs" End -->
+
 <!-- Section from "doc/guides/01.Quick Start.md.hbs" Start -->
 
 <a name="section-doc-guides-01-quick-start-md"></a>
@@ -58,9 +71,10 @@ Quick Start
 
 Deploy to the [Heroku][heroku_url] and play it!
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/realglobe-Inc/sugo-demo-example/tree/heroku)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)][heroku_deploy_url]
 
 [heroku_url]: https://www.heroku.com/
+[heroku_deploy_url]: https://heroku.com/deploy?template=https://github.com/realglobe-Inc/sugo-demo-example/tree/heroku
 
 
 <!-- Section from "doc/guides/01.Quick Start.md.hbs" End -->
@@ -112,7 +126,7 @@ $ npm install sugo-demo-example -g
 Then, connect spot to the cloud
 
 ```bash
-$ HOSTNAME=__hostname_of_your_cloud__ SPOT_KEY=__your_own_spot_name__ sugo-demo-example spot
+$ HOSTNAME=__your_cloud_hostname__ SPOT_KEY=__your_own_spot_name__ sugo-demo-example spot
 ```
 
 
@@ -134,7 +148,7 @@ $ npm install sugo-demo-example -g
 Then, rune the example terminal
 
 ```bash
-$ HOSTNAME=__hostname_of_your_cloud__ sugo-demo-example terminal
+$ HOSTNAME=__your_cloud_hostname__ sugo-demo-example terminal
 ```
 
 <!-- Section from "doc/guides/13.Use Terminal.md.hbs" End -->

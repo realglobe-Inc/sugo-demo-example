@@ -8,15 +8,25 @@
 
 let restore = (text) => text.replace(/&#x60;/g, '`').replace(/&#x3D;/g, '=')
 
+/** Converted from "doc/guides/00.Requirements.md.hbs" */
+exports[ '00.Requirements' ] = restore(`Requirements
+-----
+
++ [Node.js (&gt;&#x3D;6)][node_download_url]
+
+[node_download_url]: https://nodejs.org/en/download/
+`)
+
 /** Converted from "doc/guides/01.Quick Start.md.hbs" */
 exports[ '01.Quick Start' ] = restore(`Quick Start
 -----
 
 Deploy to the [Heroku][heroku_url] and play it!
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template&#x3D;https://github.com/realglobe-Inc/sugo-demo-example/tree/heroku)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)][heroku_deploy_url]
 
 [heroku_url]: https://www.heroku.com/
+[heroku_deploy_url]: https://heroku.com/deploy?template&#x3D;https://github.com//tree/heroku
 `)
 
 /** Converted from "doc/guides/10.How to.md.hbs" */
@@ -56,7 +66,7 @@ $ npm install sugo-demo-example -g
 Then, connect spot to the cloud
 
 &#x60;&#x60;&#x60;bash
-$ HOSTNAME&#x3D;__hostname_of_your_cloud__ SPOT_KEY&#x3D;__your_own_spot_name__ sugo-demo-example spot
+$ HOSTNAME&#x3D;__your_cloud_hostname__ SPOT_KEY&#x3D;__your_own_spot_name__ sugo-demo-example spot
 &#x60;&#x60;&#x60;
 
 `)
@@ -74,6 +84,6 @@ $ npm install sugo-demo-example -g
 Then, rune the example terminal
 
 &#x60;&#x60;&#x60;bash
-$ HOSTNAME&#x3D;__hostname_of_your_cloud__ sugo-demo-example terminal
+$ HOSTNAME&#x3D;__your_cloud_hostname__ sugo-demo-example terminal
 &#x60;&#x60;&#x60;`)
 
