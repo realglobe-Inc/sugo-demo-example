@@ -9,26 +9,19 @@
 process.chdir(`${__dirname}/..`)
 
 const apeTasking = require('ape-tasking')
-const pkg = require('../package.json')
+const sugosAssets = require('sugos-assets')
 const filelink = require('filelink')
-let { execcli } = apeTasking
-let { color } = require('../lib/configs')()
+const { name } = require('../package.json')
+const { color } = require('../lib/configs')()
 
 let faviconFile = 'doc/images/favicon.svg'
 let faviconLink = 'ui/favicon.svg'
 
 apeTasking.runTasks('favicon', [
-  () => execcli('fur', [ 'favicon', faviconFile, {
-    text: pkg.name.split(/\-/g).map((name) => name[ 0 ]).join('').toUpperCase(),
-    size: 128,
-    shape: 'g',
-    font: 'ah',
-    fontSize: 68,
-    color
-  } ], {
-    notfound: 'try npm install -g fur'
+  () => sugosAssets.favicon('example', faviconFile, {
+    name, color
   }).catch((err) => {
-    // Do nothing
+    // Ignore error
     console.log('Failed to generate favicon:', err)
   }),
   () => filelink(faviconFile, faviconLink, {

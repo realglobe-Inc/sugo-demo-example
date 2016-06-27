@@ -80,7 +80,8 @@
     "filedel": "^2.0.1",
     "filelink": "^3.0.3",
     "injectmock": "^2.0.0",
-    "sugo-cloud": "^1.2.8"
+    "sugo-cloud": "^1.2.8",
+    "sugos-assets": "^1.0.0"
   },
   "engines": {
     "node": ">=6.x",
