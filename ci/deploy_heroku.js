@@ -19,7 +19,11 @@ try {
   shouldInstall = true
 }
 if (shouldInstall) {
-  execSync('npm i majika-heroku -g', option)
+  let message = `
+You need majika-heroku!
+To install majika-heroku, try 'npm install majika-heroku -g'
+`
+  throw Error(message)
 }
 
 execSync('npm update majika-heroku -g', option)
