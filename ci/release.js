@@ -15,7 +15,8 @@ apeTasking.runTasks('release', [
   () => apeReleasing.releasePackage({
     beforeRelease: [
       './ci/build.js',
-      './ci/deploy.js',
+      './ci/deployDocs.js',
+      './ci/deployHeroku.js',
       './ci/test.js'
     ]
   })
