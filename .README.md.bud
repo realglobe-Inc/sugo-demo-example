@@ -8,7 +8,7 @@ const apeTmpl = require('ape-tmpl')
 const pkg = require('./package.json')
 
 module.exports = apeTmpl.readmeMdBud({
-  pkg: pkg,
+  pkg,
   repo: pkg.repository,
   sections: 'doc/guides/*.md.hbs',
   badges: {
@@ -23,9 +23,7 @@ module.exports = apeTmpl.readmeMdBud({
   },
   overview: 'doc/overview.md',
   links: require('./doc/links'),
-  vars: {
-    
-  }
+  vars: {}
 })
 
 if (!module.parent) {

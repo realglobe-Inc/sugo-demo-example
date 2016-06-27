@@ -12,7 +12,7 @@ let restore = (text) => text.replace(/&#x60;/g, '`').replace(/&#x3D;/g, '=')
 exports[ '00.Requirements' ] = restore(`Requirements
 -----
 
-+ [Node.js (&gt;&#x3D;6)][node_download_url]
++ [Node.js ( &gt;&#x3D;6 )][node_download_url]
 
 [node_download_url]: https://nodejs.org/en/download/
 `)

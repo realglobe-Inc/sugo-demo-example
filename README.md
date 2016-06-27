@@ -56,7 +56,7 @@ Demo of sugo example
 Requirements
 -----
 
-+ [Node.js (>=6)][node_download_url]
++ [Node.js ( >=6 )][node_download_url]
 
 [node_download_url]: https://nodejs.org/en/download/
 

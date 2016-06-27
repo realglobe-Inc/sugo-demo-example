@@ -19,7 +19,7 @@ const { readFileAsync, writeFileAsync } = require('apemanfs')
 const { color } = require('../lib/configs')()
 
 apeTasking.runTasks('compile', [
-  // Generate markdowns, snppets...
+  // Generate markdowns, snippets...
   () => coz.render('ui/js/lib/.*.jsx.bud'),
   // JSX -> JS
   () => apeCompiling.compileReactJsx('*.jsx', {
