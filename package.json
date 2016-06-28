@@ -59,9 +59,6 @@
     "sugo-terminal": "^1.0.14"
   },
   "devDependencies": {
-    "ape-releasing": "^4.0.1",
-    "ape-reporting": "^3.0.1",
-    "ape-tasking": "^4.0.2",
     "ape-tmpl": "^5.0.10",
     "ape-updating": "^4.0.1",
     "apeman-asset-javascripts": "^3.1.19",
@@ -76,7 +73,7 @@
     "injectmock": "^2.0.0",
     "sugo-cloud": "^1.2.8",
     "sugos-assets": "^1.1.4",
-    "sugos-ci": "^1.1.0"
+    "sugos-ci": "^1.2.1"
   },
   "engines": {
     "node": ">=6.x",

@@ -13,14 +13,14 @@ exports[ '00.Requirements' ] = restore(`Requirements
 -----
 
 &lt;a href&#x3D;&quot;https://nodejs.org&quot;&gt;
-  &lt;img src&#x3D;&quot;assets/images/nodejs-banner.png&quot;
-       alt&#x3D;&quot;banner&quot;
+  &lt;img src&#x3D;&quot;https://realglobe-inc.github.io/sugos-assets/images/nodejs-banner.png&quot;
+       alt&#x3D;&quot;Node.js&quot;
        height&#x3D;&quot;&quot;
        style&#x3D;&quot;height:px&quot;
   /&gt;&lt;/a&gt;
 &lt;a href&#x3D;&quot;https://docs.npmjs.com/&quot;&gt;
-  &lt;img src&#x3D;&quot;assets/images/npm-banner.png&quot;
-       alt&#x3D;&quot;banner&quot;
+  &lt;img src&#x3D;&quot;https://realglobe-inc.github.io/sugos-assets/images/npm-banner.png&quot;
+       alt&#x3D;&quot;NPM&quot;
        height&#x3D;&quot;&quot;
        style&#x3D;&quot;height:px&quot;
   /&gt;&lt;/a&gt;

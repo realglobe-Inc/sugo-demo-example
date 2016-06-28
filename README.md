@@ -62,14 +62,14 @@ Requirements
 -----
 
 <a href="https://nodejs.org">
-  <img src="assets/images/nodejs-banner.png"
-       alt="banner"
+  <img src="https://realglobe-inc.github.io/sugos-assets/images/nodejs-banner.png"
+       alt="Node.js"
        height=""
        style="height:px"
   /></a>
 <a href="https://docs.npmjs.com/">
-  <img src="assets/images/npm-banner.png"
-       alt="banner"
+  <img src="https://realglobe-inc.github.io/sugos-assets/images/npm-banner.png"
+       alt="NPM"
        height=""
        style="height:px"
   /></a>
