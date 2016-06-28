@@ -61,9 +61,24 @@ Demo of sugo example
 Requirements
 -----
 
+<a href="https://nodejs.org">
+  <img src="assets/images/nodejs-banner.png"
+       alt="banner"
+       height=""
+       style="height:px"
+  /></a>
+<a href="https://docs.npmjs.com/">
+  <img src="assets/images/npm-banner.png"
+       alt="banner"
+       height=""
+       style="height:px"
+  /></a>
+
 + [Node.js ( >=6.x )][node_download_url]
++ [npm ( >=3.x )][npm_url]
 
 [node_download_url]: https://nodejs.org/en/download/
+[npm_url]: https://docs.npmjs.com/
 
 
 <!-- Section from "doc/guides/00.Requirements.md.hbs" End -->
