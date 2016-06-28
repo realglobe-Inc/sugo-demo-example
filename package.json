@@ -1,6 +1,6 @@
 {
   "name": "sugo-demo-example",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "Demo of sugo example",
   "main": "lib",
   "bin": "./bin/cli.js",
@@ -72,8 +72,8 @@
     "filelink": "^3.0.3",
     "injectmock": "^2.0.0",
     "sugo-cloud": "^1.2.8",
-    "sugos-assets": "^1.1.4",
-    "sugos-ci": "^1.2.1"
+    "sugos-assets": "^1.1.5",
+    "sugos-ci": "^1.2.3"
   },
   "engines": {
     "node": ">=6.x",
