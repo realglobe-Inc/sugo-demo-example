@@ -1,6 +1,6 @@
 {
   "name": "sugo-demo-example",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "Demo of sugo example",
   "main": "lib",
   "bin": "./bin/cli.js",
@@ -62,9 +62,9 @@
   "devDependencies": {
     "ape-tmpl": "^5.0.10",
     "ape-updating": "^4.0.1",
-    "apeman-asset-javascripts": "^3.1.19",
+    "apeman-asset-javascripts": "^3.1.20",
     "apemanfs": "^1.0.3",
-    "apemanrequest": "^1.1.0",
+    "apemanrequest": "^2.0.0",
     "apemansleep": "^1.0.3",
     "coz": "^6.0.3",
     "expandglob": "^3.0.2",
@@ -74,7 +74,7 @@
     "injectmock": "^2.0.0",
     "sugo-cloud": "^1.2.8",
     "sugos-assets": "^1.1.5",
-    "sugos-ci": "^1.2.3"
+    "sugos-ci": "^1.4.4"
   },
   "engines": {
     "node": ">=6.x",
