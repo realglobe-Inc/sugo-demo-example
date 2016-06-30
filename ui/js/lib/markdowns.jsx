@@ -60,7 +60,7 @@ $ npm install sugo-demo-example -g
 Then, start the server
 
 &#x60;&#x60;&#x60;bash
-$ PORT&#x3D;300 sugo-demo-example cloud
+$ PORT&#x3D;3000 sugo-demo-example cloud
 &#x60;&#x60;&#x60;
 
 In the most of cases, you need to setup reverse-proxy (like [nginx][nginx_url]) to exports the server to the outer world.
