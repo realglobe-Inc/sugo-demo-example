@@ -81,7 +81,7 @@ $ npm install sugo-demo-example -g
 Then, connect the spot to cloud
 
 &#x60;&#x60;&#x60;bash
-$ HOSTNAME&#x3D;__your_cloud_hostname__ SPOT_KEY&#x3D;__your_own_spot_name__ sugo-demo-example spot
+$ HOSTNAME&#x3D;&quot;__your_host__&quot; SPOT_KEY&#x3D;&quot;__your_spot_name__&quot; sugo-demo-example spot
 &#x60;&#x60;&#x60;
 `)
 
@@ -98,7 +98,7 @@ $ npm install sugo-demo-example -g
 Then, run the example terminal
 
 &#x60;&#x60;&#x60;bash
-$ HOSTNAME&#x3D;__your_cloud_hostname__ sugo-demo-example terminal
+$ HOSTNAME&#x3D;&quot;__your_host__&quot; sugo-demo-example terminal
 &#x60;&#x60;&#x60;
 
 Or, you can try it from UI pages on the cloud.
