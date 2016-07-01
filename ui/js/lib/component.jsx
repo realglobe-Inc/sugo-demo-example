@@ -67,7 +67,6 @@ const Component = React.createClass({
   getInitialState () {
     const s = this
     let { props } = s
-    const { port, hostname } = props
     return {
       html: DEFAULT_HTML,
       script: DEFAULT_SCRIPT,
@@ -104,7 +103,7 @@ const Component = React.createClass({
             runSpot={ () => s.setState({ tooltip: markdowns[ '12.Run Spot' ] }) }
             onTabChange={ (e) => s.setTab(e.tab) }/>
           <SgExampleBody hidden={ tab !== 'DEMO' }>
-            <SgExampleAbout pkg={pkg}/>
+            <SgExampleAbout pkg={ pkg }/>
             <SgExampleStatus spots={ spots }
                              terminals={ terminals }
                              cloud={ cloud }
