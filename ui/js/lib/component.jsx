@@ -63,15 +63,18 @@ const Component = React.createClass({
     /** Theme color */
     color: types.string
   },
+
   getInitialState () {
     const s = this
     let { props } = s
     const { port, hostname } = props
     return {
-      script: DEFAULT_SCRIPT,
       html: DEFAULT_HTML,
+      script: DEFAULT_SCRIPT,
       tab: 'DEMO',
+      content: 'default',
       playground: false,
+      reading: false,
       refreshing: false,
       tooltip: null,
       cloud: {},
@@ -114,6 +117,8 @@ const Component = React.createClass({
               pipeConsole={ true }
               closed={ !state.playground }
               onToggle={ s.togglePlayground }
+              defaultHtml={ DEFAULT_HTML }
+              defaultScript={ DEFAULT_SCRIPT }
             />
           </SgExampleBody>
           <SgExampleBody hidden={ tab !== 'GUIDES' }>
@@ -174,13 +179,13 @@ const Component = React.createClass({
 
   handleChange (e) {
     const s = this
+    let { state } = s
     let { html, script, globals } = e.values
     s.setState({ html, script, globals })
     s.tryAsync('saving', co(function * () {
       const { fileAgent } = s
-      let name = 'default'
-      yield fileAgent.write(`${name}.html`, html)
-      yield fileAgent.write(`${name}.jsx`, script)
+      yield fileAgent.write(`${state.content}.html`, html)
+      yield fileAgent.write(`${state.content}.jsx`, script)
     }))
   },
 
@@ -209,9 +214,9 @@ const Component = React.createClass({
   tryAsync (name, promise, delay = 300) {
     const s = this
     if (s.state[ name ]) {
-      return
+      return Promise.resolve(true)
     }
-    Promise.resolve()
+    return Promise.resolve()
       .then(() => sleep(delay))
       .then(() => s.setState({ [name]: true }))
       .then(() => promise)
@@ -222,7 +227,19 @@ const Component = React.createClass({
   togglePlayground () {
     const s = this
     let { state } = s
-    s.setState({ playground: !state.playground })
+    let playground = !state.playground
+    s.setState({ playground })
+    if (playground) {
+      s.tryAsync('reading', co(function * () {
+        const { fileAgent, state } = s
+        let html = yield fileAgent.read(`${state.content}.html`)
+        let script = yield fileAgent.read(`${state.content}.jsx`)
+        s.setState({
+          html: html || state.html,
+          script: script || state.script
+        })
+      }))
+    }
   },
 
   getMarkdownVars () {
