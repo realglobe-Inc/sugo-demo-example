@@ -9,6 +9,7 @@ require('babel-polyfill')
 import React, {PropTypes as types} from 'react'
 
 import cloudAgent from 'sugo-cloud/agent'
+import fileAgent from 'sugo-agent-file'
 import compileAgent from 'sugo-agent-compile'
 
 import {
@@ -25,7 +26,7 @@ import {
 } from 'sugo-react-example'
 import sgReactComponents from 'sg-react-components'
 import apemanReactBasic from 'apeman-react-basic'
-import apemansleep from 'apemansleep'
+import apemansleep, {sleep} from 'apemansleep'
 import co from 'co'
 import os from 'os'
 import sugoTerminal from 'sugo-terminal'
@@ -145,6 +146,11 @@ const Component = React.createClass({
         s.refreshStatus()
       }
     })
+
+    s.compileAgent = compileAgent('/dynamic/compile')
+    s.fileAgent = fileAgent('/dynamic/contents')
+    s.cloudAgent = cloudAgent()
+
     s.observer.start()
     s.refreshStatus()
     s.setTab(String(hash).replace(/^#/, '').toUpperCase())
@@ -153,8 +159,6 @@ const Component = React.createClass({
   componentWillUnmount () {
     const s = this
     s.observer.stop()
-
-    clearTimeout(s._statusRefreshTimer)
   },
 
   // --------------------
@@ -172,36 +176,47 @@ const Component = React.createClass({
     const s = this
     let { html, script, globals } = e.values
     s.setState({ html, script, globals })
+    s.tryAsync('saving', co(function * () {
+      const { fileAgent } = s
+      let name = 'playground'
+      yield fileAgent.write(`${name}.html`, html)
+      yield fileAgent.write(`${name}.jsx`, script)
+    }))
   },
 
   compileScript (script) {
     const s = this
-    let { state } = s
-    return compileAgent('/actions/compile').compile(script)
+    let { compileAgent } = s
+    return compileAgent.compile(script)
   },
 
-  refreshStatus (delay = 300) {
+  refreshStatus () {
     const s = this
-    let { state } = s
-    if (state.refreshing) {
+    let { state, cloudAgent } = s
+    let { location } = window
+    if (!location) {
       return
     }
-    s.setState({ refreshing: true })
-    s._statusRefreshTimer = setTimeout(() => {
-      let { location } = window
-      if (!location) {
-        return
-      }
-      co(function * () {
-        let spots = yield cloudAgent().spots()
-        let terminals = yield cloudAgent().terminals()
-        let cloud = { host: location.host }
-        let globals = Object.assign(state.globals, { spots })
-        s.setState({ spots, terminals, cloud, globals })
-      })
-        .catch((err) => console.error(err))
-        .then(() => s.setState({ refreshing: false }))
-    }, delay)
+    s.tryAsync('refreshing', co(function * () {
+      let spots = yield cloudAgent.spots()
+      let terminals = yield cloudAgent.terminals()
+      let cloud = { host: location.host }
+      let globals = Object.assign(state.globals, { spots })
+      s.setState({ spots, terminals, cloud, globals })
+    }))
+  },
+
+  tryAsync (name, promise, delay = 300) {
+    const s = this
+    if (s.state[ name ]) {
+      return
+    }
+    Promise.resolve()
+      .then(() => sleep(delay))
+      .then(() => s.setState({ [name]: true }))
+      .then(() => promise)
+      .catch((err) => console.error(err))
+      .then(() => s.setState({ [name]: false }))
   },
 
   togglePlayground () {
