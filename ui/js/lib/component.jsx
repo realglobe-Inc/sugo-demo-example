@@ -178,7 +178,7 @@ const Component = React.createClass({
     s.setState({ html, script, globals })
     s.tryAsync('saving', co(function * () {
       const { fileAgent } = s
-      let name = 'playground'
+      let name = 'default'
       yield fileAgent.write(`${name}.html`, html)
       yield fileAgent.write(`${name}.jsx`, script)
     }))
