@@ -42,5 +42,5 @@ ui/css/*.css
 ui/css/*.css.map
 
 
-#app.json
-#Procfile
+app.json
+Procfile
