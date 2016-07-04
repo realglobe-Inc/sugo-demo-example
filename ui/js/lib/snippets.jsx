@@ -46,7 +46,7 @@ import {
 } from 'apeman-react-basic'
 import co from 'co'
 import sugoTerminal from 'sugo-terminal'
-import {sleep} from 'apemansleep'
+import asleep from 'asleep'
 
 /**
  * Dynamic component create from the online-editor
@@ -113,7 +113,7 @@ const Playground = React.createClass({
 
                       // Tear down
                       yield spot.disconnect()
-                      yield sleep(10)
+                      yield asleep(10)
                   }) }
                     spinning={ pingAt && !pongAt }
                     primary={ !pingAt }
