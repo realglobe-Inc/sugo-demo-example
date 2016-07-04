@@ -65,6 +65,7 @@
     "ape-tmpl": "^5.0.11",
     "ape-updating": "^4.0.3",
     "apeman-asset-javascripts": "^3.1.26",
+    "apeman-react-icon": "^3.0.2",
     "apemanfs": "^1.0.5",
     "apemanrequest": "^2.0.1",
     "aport": "^1.0.0",
