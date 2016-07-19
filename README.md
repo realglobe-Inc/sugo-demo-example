@@ -58,6 +58,7 @@ Demo of sugo example
 <!-- Section from "doc/guides/00.Requirements.md.hbs" Start -->
 
 <a name="section-doc-guides-00-requirements-md"></a>
+
 Requirements
 -----
 
@@ -86,6 +87,7 @@ Requirements
 <!-- Section from "doc/guides/01.Quick Start.md.hbs" Start -->
 
 <a name="section-doc-guides-01-quick-start-md"></a>
+
 Quick Start
 -----
 
@@ -102,6 +104,7 @@ Deploy to the [Heroku][heroku_url] and play it!
 <!-- Section from "doc/guides/10.How to.md.hbs" Start -->
 
 <a name="section-doc-guides-10-how-to-md"></a>
+
 How to
 -------
 
@@ -110,6 +113,7 @@ How to
 <!-- Section from "doc/guides/11.Setup Cloud.md.hbs" Start -->
 
 <a name="section-doc-guides-11-setup-cloud-md"></a>
+
 ### Setup Cloud
 
 Install the CLI
@@ -118,7 +122,7 @@ Install the CLI
 $ npm install sugo-demo-example -g
 ```
 
-Then, start the server
+Then, run the server
 
 ```bash
 $ PORT=3000 sugo-demo-example cloud
@@ -131,10 +135,11 @@ In the most of cases, you need to setup reverse-proxy (like [nginx][nginx_url]) 
 
 <!-- Section from "doc/guides/11.Setup Cloud.md.hbs" End -->
 
-<!-- Section from "doc/guides/12.Run Spot.md.hbs" Start -->
+<!-- Section from "doc/guides/12.Connect Actor.md.hbs" Start -->
 
-<a name="section-doc-guides-12-run-spot-md"></a>
-### Run Spot
+<a name="section-doc-guides-12-connect-actor-md"></a>
+
+### Connect Actor
 
 Install the CLI
 
@@ -143,19 +148,20 @@ Install the CLI
 $ npm install sugo-demo-example -g
 ```
 
-Then, connect the spot to cloud
+Then, connect the actor to cloud
 
 ```bash
-$ HOSTNAME="__your_host__" SPOT_KEY="__your_spot_name__" sugo-demo-example spot
+$ HOSTNAME="__your_host__" ACTOR_KEY="__your_actor_name__" sugo-demo-example actor
 ```
 
 
-<!-- Section from "doc/guides/12.Run Spot.md.hbs" End -->
+<!-- Section from "doc/guides/12.Connect Actor.md.hbs" End -->
 
-<!-- Section from "doc/guides/13.Use Terminal.md.hbs" Start -->
+<!-- Section from "doc/guides/13.Connect Caller.md.hbs" Start -->
 
-<a name="section-doc-guides-13-use-terminal-md"></a>
-### Use Terminal
+<a name="section-doc-guides-13-connect-caller-md"></a>
+
+### Connect Caller
 
 
 Install the CLI
@@ -164,16 +170,16 @@ Install the CLI
 $ npm install sugo-demo-example -g
 ```
 
-Then, run the example terminal
+Then, run the example caller
 
 ```bash
-$ HOSTNAME="__your_host__" sugo-demo-example terminal
+$ HOSTNAME="__your_host__" sugo-demo-example caller
 ```
 
 Or, you can try it from UI pages on the cloud.
 
 
-<!-- Section from "doc/guides/13.Use Terminal.md.hbs" End -->
+<!-- Section from "doc/guides/13.Connect Caller.md.hbs" End -->
 
 
 <!-- Sections Start -->
