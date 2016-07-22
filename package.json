@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/realglobe-Inc/sugo-demo-example#readme",
   "dependencies": {
-    "apeman-react-basic": "^8.0.1",
+    "apeman-react-basic": "^8.0.2",
     "apemancolor": "^1.2.1",
     "asleep": "^1.0.3",
     "babel-polyfill": "^6.9.1",
