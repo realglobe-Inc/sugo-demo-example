@@ -1,6 +1,6 @@
 {
   "name": "sugo-demo-example",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "description": "Demo of sugo example",
   "main": "lib",
   "bin": "./bin/cli.js",
