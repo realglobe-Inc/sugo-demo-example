@@ -25,15 +25,11 @@ module.exports = {
   travisCreateArgs: {},
   heroku: {
     additionalDependencies: {
-      ['babel']: '*',
-      ['babel-cli']: '*',
-      ['node-sass']: '*',
-      ['browserify']: '*',
-      ['babel-preset-react']: '*',
-      ['babel-preset-es2015']: '*'
+      ['node-sass']: '*'
     },
     logo: 'http://realglobe-inc.github.io/sugo-demo-example/images/favicon.png',
     preDeploy: [
+      'rm -rf tmp',
       'npm shrinkwrap',
       'npm run prepublish',
       'curl -u`sugos-secrets get -r jfrog:deployer:username`:`sugos-secrets get -r jfrog:deployer:password` https://realglobe.artifactoryonline.com/realglobe/api/npm/auth > .npmrc',
