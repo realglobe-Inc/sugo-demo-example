@@ -45,8 +45,11 @@ Demo of sugo example
 
 [![favicon_url]][app_url]
 
+This is an example application to use [SUGOS][sugos_url]. 
+You can edit script and try it out on browser. 
+
 [app_url]: http://sugo-demo-example.herokuapp.com
-[favicon_url]: ./images/favicon.png
+[favicon_url]: doc/images/favicon.png
 
 
 <!-- Overview End -->
