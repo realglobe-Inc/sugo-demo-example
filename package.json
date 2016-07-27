@@ -70,6 +70,7 @@
     "apeman-react-icon": "^3.0.5",
     "aport": "^1.0.0",
     "arequest": "^2.0.5",
+    "babel-polyfill": "^6.9.1",
     "coz": "^6.0.5",
     "injectmock": "^2.0.0",
     "sugo-ci-example": "^2.0.5",
