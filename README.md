@@ -46,7 +46,7 @@ Demo of sugo example
 [![favicon_url]][app_url]
 
 [app_url]: http://sugo-demo-example.herokuapp.com
-[favicon_url]: http://realglobe-Inc.github.io/sugo-demo-example/images/favicon.png
+[favicon_url]: ./images/favicon.png
 
 
 <!-- Overview End -->
@@ -116,7 +116,11 @@ How to
 
 ### Setup Cloud
 
-Install the CLI
+Setup a cloud server to provide UI pages and actor/connector API.
+This component is build with [SUGO-Cloud][sugo_cloud_url] package.
+
+
+Install the CLI:
 
 ```bash
 $ npm install sugo-demo-example -g
@@ -141,14 +145,16 @@ In the most of cases, you need to setup reverse-proxy (like [nginx][nginx_url]) 
 
 ### Connect Actor
 
-Install the CLI
+Connect an actor to provides functionalities with.
+This component is build with [SUGO-Actor][sugo_actor_url] package.
 
+Install the CLI:
 
 ```bash
 $ npm install sugo-demo-example -g
 ```
 
-Then, connect the actor to cloud
+Then, connect the actor to the cloud
 
 ```bash
 $ HOSTNAME="__your_host__" ACTOR_KEY="__your_actor_name__" sugo-demo-example actor
@@ -161,10 +167,13 @@ $ HOSTNAME="__your_host__" ACTOR_KEY="__your_actor_name__" sugo-demo-example act
 
 <a name="section-doc-guides-13-connect-caller-md"></a>
 
-### Connect Caller
+### Run Caller
+
+Run a caller to call functions defined in actor.
+This component is build with [SUGO-Caller][sugo_caller_url] package.
 
 
-Install the CLI
+Install the CLI:
 
 ```bash
 $ npm install sugo-demo-example -g
@@ -202,7 +211,13 @@ Links
 ------
 
 + [sugos][sugos_url]
++ [sugo-cloud][sugo_cloud_url]
++ [sugo-caller][sugo_caller_url]
++ [sugo-actor][sugo_actor_url]
 
 [sugos_url]: https://github.com/realglobe-Inc/sugos
+[sugo_cloud_url]: https://github.com/realglobe-Inc/sugo-cloud
+[sugo_caller_url]: https://github.com/realglobe-Inc/sugo-caller
+[sugo_actor_url]: https://github.com/realglobe-Inc/sugo-actor
 
 <!-- Links End -->
