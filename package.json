@@ -42,7 +42,7 @@
     "defaults": "^1.0.3",
     "execcli": "^4.0.6",
     "open": "0.0.5",
-    "pudding": "^4.0.2",
+    "pudding": "^4.0.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "sg-compiler": "^1.0.2",
