@@ -1,0 +1,8 @@
+{
+  "name": "sugo-demo-example",
+  "description": "Demo of sugo example",
+  "logo": "http://realglobe-inc.github.io/sugo-demo-example/images/favicon.png",
+  "scripts": {
+    "postdeploy": "rm -rf tmp && npm update && ./ci/build.js"
+  }
+}
