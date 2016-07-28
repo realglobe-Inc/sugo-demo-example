@@ -73,7 +73,7 @@
     "babel-polyfill": "^6.9.1",
     "coz": "^6.0.5",
     "injectmock": "^2.0.0",
-    "sugo-ci-example": "^2.0.11",
+    "sugo-ci-example": "^3.0.0",
     "sugo-react-example": "^2.0.7",
     "sugos-assets": "^2.0.1"
   },
