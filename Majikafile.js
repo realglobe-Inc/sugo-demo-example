@@ -36,6 +36,7 @@ module.exports = {
     ],
     postDeploy: [
       'rm -rf tmp',
+      'rm -rf lib/*.js',// Cleanup compiled
       'npm update',
       './ci/build.js'
     ]
