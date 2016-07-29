@@ -31,8 +31,8 @@
   "homepage": "https://github.com/realglobe-Inc/sugo-demo-example#readme",
   "dependencies": {
     "aglob": "^1.0.1",
-    "apeman-asset-javascripts": "^5.0.4",
-    "apeman-react-basic": "^9.0.3",
+    "apeman-asset-javascripts": "^5.0.5",
+    "apeman-react-basic": "^9.0.6",
     "apeman-react-icon": "^4.0.0",
     "apemancolor": "^1.2.1",
     "aport": "^1.0.0",
@@ -61,7 +61,7 @@
     "sugo-endpoint-file": "^1.0.7",
     "sugo-module-noop": "^4.0.3",
     "sugo-observer": "^2.0.1",
-    "sugo-react-example": "^2.0.9"
+    "sugo-react-example": "^2.0.10"
   },
   "devDependencies": {
     "ababel": "^1.0.25",
