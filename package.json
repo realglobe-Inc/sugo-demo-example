@@ -58,13 +58,14 @@
     "sugo-observer": "^2.0.1",
     "sugo-react-example": "^2.0.7",
     "aglob": "^1.0.1",
-    "amocha": "^1.0.9",
     "apeman-react-icon": "^3.0.5"
   },
   "devDependencies": {
     "ape-tmpl": "^5.0.12",
+    "apeman-asset-javascripts": "^5.0.1",
     "ape-updating": "^4.0.4",
     "ababel": "^1.0.25",
+    "amocha": "^1.0.9",
     "ababel-es2015": "^1.0.5",
     "ababel-react": "^1.0.5",
     "aport": "^1.0.0",
