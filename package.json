@@ -61,7 +61,7 @@
     "sugo-endpoint-file": "^1.0.7",
     "sugo-module-noop": "^4.0.3",
     "sugo-observer": "^2.0.1",
-    "sugo-react-example": "^2.0.8"
+    "sugo-react-example": "^2.0.9"
   },
   "devDependencies": {
     "ababel": "^1.0.25",
