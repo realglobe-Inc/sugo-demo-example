@@ -111,9 +111,9 @@ const Playground = React.createClass({
     const s = this
     let { caller } = s
     if (!caller) {
-      return
+      return Promise.resolve(false)
     }
-    co(handler, caller).catch((err) => console.error(err))
+    return co(handler, caller).catch((err) => console.error(err))
   }
 })
 
