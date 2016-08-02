@@ -24,7 +24,7 @@ describe('actor', () => {
 
   after(() => co(function * () {
     injectmock.restoreAll()
-    yield filedel(`${storage}/**/*.*`)
+    yield filedel(`${storage}/**/*.*`, { force: true })
   }))
 
   it('Spot', () => co(function * () {
