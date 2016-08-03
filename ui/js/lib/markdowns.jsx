@@ -52,7 +52,7 @@ exports[ '10.How to' ] = restore(`How to
 exports[ '11.Setup Cloud' ] = restore(`### Setup Cloud
 
 Setup a cloud server to provide UI pages and actor/connector API.
-This component is build with [SUGO-Cloud][sugo_cloud_url] package.
+This component is build with [SUGO-Hub][sugo_hub_url] package.
 
 
 Install the CLI:
