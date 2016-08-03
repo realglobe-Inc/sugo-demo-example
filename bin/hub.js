@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-/** Run cloud */
+/** Run hub */
 'use strict'
 
-const cloud = require('../lib/cloud')
+const hub = require('../lib/hub')
 
-cloud()
-  .then((cloud) => {})
+hub()
+  .then((hub) => {})
   .catch((err) => {
-    console.error('Failed to start cloud', err)
+    console.error('Failed to start hub', err)
     process.exit(1)
   })
 
