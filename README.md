@@ -113,13 +113,13 @@ How to
 
 <!-- Section from "doc/guides/10.How to.md.hbs" End -->
 
-<!-- Section from "doc/guides/11.Setup Cloud.md.hbs" Start -->
+<!-- Section from "doc/guides/11.Setup Hub.md.hbs" Start -->
 
-<a name="section-doc-guides-11-setup-cloud-md"></a>
+<a name="section-doc-guides-11-setup-hub-md"></a>
 
-### Setup Cloud
+### Setup Hub
 
-Setup a cloud server to provide UI pages and actor/connector API.
+Setup a hub server to provide UI pages and actor/connector API.
 This component is build with [SUGO-Hub][sugo_hub_url] package.
 
 
@@ -140,7 +140,7 @@ In the most of cases, you need to setup reverse-proxy (like [nginx][nginx_url]) 
 [nginx_url]: https://www.nginx.com/
 
 
-<!-- Section from "doc/guides/11.Setup Cloud.md.hbs" End -->
+<!-- Section from "doc/guides/11.Setup Hub.md.hbs" End -->
 
 <!-- Section from "doc/guides/12.Connect Actor.md.hbs" Start -->
 

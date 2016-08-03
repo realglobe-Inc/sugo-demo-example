@@ -48,10 +48,10 @@ Deploy to the [Heroku][heroku_url] and play it!
 exports[ '10.How to' ] = restore(`How to
 -------`)
 
-/** Converted from "doc/guides/11.Setup Cloud.md.hbs" */
-exports[ '11.Setup Cloud' ] = restore(`### Setup Cloud
+/** Converted from "doc/guides/11.Setup Hub.md.hbs" */
+exports[ '11.Setup Hub' ] = restore(`### Setup Hub
 
-Setup a cloud server to provide UI pages and actor/connector API.
+Setup a hub server to provide UI pages and actor/connector API.
 This component is build with [SUGO-Hub][sugo_hub_url] package.
 
 
