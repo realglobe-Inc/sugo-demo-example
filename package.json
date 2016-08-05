@@ -6,6 +6,7 @@
   "bin": "./bin/cli.js",
   "scripts": {
     "test": "./ci/test.js",
+    "test:browser": "karma start",
     "prepublish": "./ci/build.js",
     "start": "./bin/hub.js",
     "hub": "./bin/hub.js",
@@ -83,5 +84,8 @@
   },
   "publishConfig": {
     "registry": "https://realglobe.artifactoryonline.com/realglobe/api/npm/npm-local"
+  },
+  "devDependencies": {
+    "sg-karma": "^1.0.4"
   }
 }
